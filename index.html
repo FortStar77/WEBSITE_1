@@ -3,28 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Złap Kwadrat!</title>
+    <title>Złap Kwadrat! - Szybka Gra Zręcznościowa</title>
+    
+    <meta name="description" content="Sprawdź swój refleks w grze 'Złap Czerwony Kwadrat!'. Jak szybko potrafisz klikać? Zagraj teraz za darmo i pobij swój rekord.">
 
-    <!-- Skrypt Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7782110146823036"
      crossorigin="anonymous"></script>
 
     <style>
+        /* --- Globalne style --- */
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             background-color: #f0f0f0;
             margin: 0;
             padding: 0;
+            line-height: 1.6;
         }
 
-        h1 {
+        /* --- Nagłówek i Nawigacja --- */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        nav ul {
+            padding: 0;
+            margin: 10px 0 0;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #4db8ff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Główny Kontener Treści --- */
+        main.container {
+            max-width: 960px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* --- Sekcje Tekstowe (Kluczowe dla AdSense) --- */
+        .content-section {
+            text-align: left;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .content-section h2 {
             color: #333;
-            margin-top: 40px;
+            border-bottom: 2px solid #4db8ff;
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        .content-section p, .content-section ul {
+            font-size: 1.1em;
+            color: #555;
+        }
+        
+        .content-section li {
+            margin-bottom: 10px;
+        }
+
+        /* --- Gra --- */
+        #game-info {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        #start-button {
+            font-size: 20px;
+            padding: 12px 25px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #start-button:hover {
+            background-color: #45a049;
         }
 
         #game-area {
-            width: 600px;
+            /* POPRAWKA: Responsywność dla urządzeń mobilnych */
+            width: 100%;
+            max-width: 600px; 
             height: 400px;
             border: 3px solid #000;
             background-color: #fff;
@@ -41,30 +130,26 @@
             cursor: pointer;
             display: none;
             transition: all 0.1s ease;
+            border-radius: 3px; /* Lekkie zaokrąglenie dla estetyki */
         }
 
-        #start-button {
-            font-size: 20px;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-
-        #game-info {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
+        /* --- Reklamy --- */
         .ad-container {
-            margin: 20px auto;
+            margin: 30px auto;
             text-align: center;
         }
 
+        /* --- Stopka --- */
         footer {
             margin-top: 40px;
-            padding: 20px;
+            padding: 30px;
             background-color: #222;
-            color: #fff;
+            color: #aaa;
             font-size: 14px;
+        }
+        
+        footer p {
+            margin: 5px 0;
         }
 
         footer a {
@@ -75,51 +160,81 @@
         footer a:hover {
             text-decoration: underline;
         }
+
     </style>
 </head>
 <body>
 
-    <h1>Gra: Złap Czerwony Kwadrat!</h1>
+    <header>
+        <h1>Gra: Złap Czerwony Kwadrat!</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Strona Główna</a></li>
+                <li><a href="about.html">O nas</a></li> <li><a href="contact.html">Kontakt</a></li> <li><a href="https://fortstar77.github.io/privacy/" target="_blank">Polityka Prywatności</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Reklama nad grą -->
-    <div class="ad-container">
-        <ins class="adsbygoogle"
-            style="display:block"
-            data-ad-client="ca-pub-7782110146823036"
-            data-ad-slot="1234567890"
-            data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
+    <main class="container">
 
-    <div id="game-info">
-        Wynik: <span id="score">0</span> | Czas: <span id="time">15</span>s
-    </div>
+        <section class="content-section">
+            <h2>Sprawdź swój refleks!</h2>
+            <p>Witaj w "Złap Czerwony Kwadrat!" – prostej, ale wciągającej grze online, która przetestuje Twój refleks i szybkość reakcji. Zasady są banalnie proste, ale liczy się każda milisekunda. Czy jesteś gotów podjąć wyzwanie i wspiąć się na szczyt tabeli wyników?</p>
+            <p>Nasza gra to idealny sposób na krótką przerwę w pracy lub nauce. Wystarczy minuta, aby rozruszać umysł i sprawdzić, jak szybko potrafisz reagować. Powodzenia!</p>
+        </section>
 
-    <button id="start-button">Start!</button>
+        <div class="ad-container">
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-7782110146823036"
+                data-ad-slot="1234567890" data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
 
-    <div id="game-area">
-        <div id="target"></div>
-    </div>
+        <section class="content-section">
+            <h2>Jak grać?</h2>
+            <p>Opanowanie gry zajmuje tylko chwilę:</p>
+            <ul>
+                <li>Naciśnij duży przycisk <strong>"Start!"</strong>, aby rozpocząć 15-sekundową rundę.</li>
+                <li>Gdy gra się rozpocznie, na polu gry pojawi się <strong>czerwony kwadrat</strong>.</li>
+                <li>Twoim zadaniem jest <strong>kliknąć kwadrat</strong> tak szybko, jak to możliwe.</li>
+                <li>Po każdym trafieniu, kwadrat natychmiast przeniesie się w inne losowe miejsce.</li>
+                <li>Masz <strong>15 sekund</strong>, aby zdobyć jak najwięcej punktów. Każde trafienie to jeden punkt.</li>
+                <li>Po zakończeniu czasu, zobaczysz swój wynik. Naciśnij "Zagraj ponownie?", aby spróbować pobić swój rekord!</li>
+            </ul>
+        </section>
 
-    <!-- Reklama pod grą -->
-    <div class="ad-container">
-        <ins class="adsbygoogle"
-            style="display:block"
-            data-ad-client="ca-pub-7782110146823036"
-            data-ad-slot="9876543210"
-            data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
+        <div id="game-info">
+            Wynik: <span id="score">0</span> | Czas: <span id="time">15</span>s
+        </div>
 
-    <footer>
+        <button id="start-button">Start!</button>
+
+        <div id="game-area" aria-label="Obszar gry Złap Kwadrat">
+            <div id="target"></div>
+        </div>
+
+        <div class="ad-container">
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-7782110146823036"
+                data-ad-slot="9876543210" data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+    </main> <footer>
         <p>© 2025 FortStar77. Wszelkie prawa zastrzeżone.</p>
-        <p><a href="https://fortstar77.github.io/privacy/" target="_blank">Polityka prywatności</a></p>
+        <p>
+            <a href="about.html">O nas</a> | 
+            <a href="contact.html">Kontakt</a> | 
+            <a href="https://fortstar77.github.io/privacy/" target="_blank">Polityka prywatności</a>
+        </p>
     </footer>
 
     <script>
