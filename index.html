@@ -18,19 +18,29 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
     <style>
-        /* === GLOBALNY RESET I MOTYW MROCZNY === */
+        /* === GLOBALNY RESET I MOTYW === */
         :root {
+            /* Dark Theme (Default) */
             --color-bg: #121212;
             --color-bg-container: #1E1E1E;
             --color-text: #E0E0E0;
             --color-text-secondary: #AAAAAA;
             --color-border: #333333;
-            --color-primary: #00A8FF; /* Żywy błękit */
-            --color-secondary: #4CAF50; /* Zielony Start */
-            --color-accent: #FF3B3B;   /* Czerwień Celu */
-            
+    
+            /* Wspólne */
+            --color-primary: #00A8FF; 
+            --color-secondary: #4CAF50; 
+            --color-accent: #FF3B3B;   
             --font-body: 'Inter', Arial, sans-serif;
             --font-heading: 'Oswald', sans-serif;
+        }
+    
+        body.light-theme {
+            --color-bg: #F0F2F5; /* Jasnoszare tło */
+            --color-bg-container: #FFFFFF; /* Białe kontenery */
+            --color-text: #1a1a1a; /* Ciemny tekst */
+            --color-text-secondary: #555555;
+            --color-border: #DDE1E6; /* Jasne obramowania */
         }
 
         * {
@@ -92,6 +102,25 @@
             color: #ffffff;
             text-decoration: underline;
             transform: scale(1.05);
+        }
+
+        #theme-toggle-button {
+            background: var(--color-border);
+            color: var(--color-text);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #theme-toggle-button:hover {
+            background: var(--color-primary);
+            transform: scale(1.1);
         }
 
         /* === GŁÓWNY KONTENER TREŚCI === */
@@ -377,6 +406,99 @@
 </head>
 <body>
 
+    <div id="top-ads-container" style="text-align: center; background-color: var(--color-bg);">
+        <!-- NOWE REKLAMY -->
+        <script type="text/javascript" src="https://www.effectivegatecpm.com/v5hwx133ky?key=1395b32b485fc8345294fb34868b84bb"></script>
+        <script type='text/javascript' src='//pl28008059.effectivegatecpm.com/ae/a0/f8/aea0f8601b5d2de4da8c48f64970bc09.js'></script>
+
+        <!-- PRZENIESIONE REKLAMY GOOGLE (1) -->
+        <div class="ad-container">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-7782110146823036"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        <!-- PRZENIESIONE REKLAMY GOOGLE (2) -->
+        <div class="ad-container">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-7782110146823036"
+                 data-ad-slot="9876543210"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <!-- PRZENIESIONE REKLAMY (HIGHPERFORMANCE) -->
+        <div class="ad-container">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'e57f905cb56d171f7a667907ea9d09ed',
+                    'format' : 'iframe',
+                    'height' : 250,
+                    'width' : 300,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/e57f905cb56d171f7a667907ea9d09ed/invoke.js"></script>
+        </div>
+        <div class="ad-container">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '0eb31f55c9c1dfb639e06d25e640027d',
+                    'format' : 'iframe',
+                    'height' : 600,
+                    'width' : 160,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/0eb31f55c9c1dfb639e06d25e640027d/invoke.js"></script>
+        </div>
+        <div class="ad-container">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '8b4a8b99c04cf58f2931d06cfab6d287',
+                    'format' : 'iframe',
+                    'height' : 300,
+                    'width' : 160,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/8b4a8b99c04cf58f2931d06cfab6d287/invoke.js"></script>
+        </div>
+        <div class="ad-container">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'd09b3b9fc18d730293fd08d9393c6a9e',
+                    'format' : 'iframe',
+                    'height' : 60,
+                    'width' : 468,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/d09b3b9fc18d730293fd08d9393c6a9e/invoke.js"></script>
+        </div>
+        <div class="ad-container">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '786f8d1076514166c7b4445571f0809d',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/786f8d1076514166c7b4445571f0809d/invoke.js"></script>
+        </div>
+    </div>
+
     <header>
         <h1>Gra: Złap Cel!</h1>
         <nav>
@@ -385,10 +507,12 @@
                 <li><a href="about.html">O nas</a></li>
                 <li><a href="contact.html">Kontakt</a></li>
                 <li><a href="https://fortstar77.github.io/privacy/" target="_blank" rel="noopener noreferrer">Polityka Prywatności</a></li>
+                <li><button id="theme-toggle-button" aria-label="Zmień motyw">☀️</button></li>
             </ul>
         </nav>
     </header>
 
+    <!-- TA REKLAMA ZOSTAŁA PRZENIESIONA NA GÓRĘ
     <div class="ad-container">
         <ins class="adsbygoogle"
              style="display:block"
@@ -401,6 +525,7 @@
              (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
     </div>
+    -->
 
     <main class="container">
 
@@ -439,6 +564,7 @@
             <div id="target" role="button" tabindex="0" aria-label="Złap Czerwony Cel"></div>
         </div>
 
+        <!-- TA REKLAMA ZOSTAŁA PRZENIESIONA NA GÓRĘ
         <div class="ad-container">
             <ins class="adsbygoogle"
                  style="display:block"
@@ -451,6 +577,7 @@
                  (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
+        -->
 
     </main> 
     
@@ -479,7 +606,8 @@
                 highScoreDisplay: document.getElementById('high-score'),
                 startButton: document.getElementById('start-button'),
                 gameInfo: document.getElementById('game-info'),
-                difficultyButtons: document.querySelectorAll('.difficulty-button')
+                difficultyButtons: document.querySelectorAll('.difficulty-button'),
+                themeToggleButton: document.getElementById('theme-toggle-button') // Dodany przycisk
             };
 
             // --- 2. REFERENCJE DO DŹWIĘKÓW ---
@@ -533,7 +661,23 @@
                         setDifficulty(button.dataset.difficulty);
                     });
                 });
+
+                // --- LOGIKA PRZEŁĄCZNIKA MOTYWU ---
+                // Sprawdź zapisany motyw
+                if (localStorage.getItem('theme') === 'light') {
+                    document.body.classList.add('light-theme');
+                    DOM.themeToggleButton.textContent = '🌙';
+                }
+    
+                DOM.themeToggleButton.addEventListener('click', () => {
+                    document.body.classList.toggle('light-theme');
+                    let isLight = document.body.classList.contains('light-theme');
+                    DOM.themeToggleButton.textContent = isLight ? '🌙' : '☀️';
+                    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+                });
             }
+
+            // *** POPRAWKA BŁĘDU: PRZYWRÓCENIE BRAKUJĄCYCH FUNKCJI ***
 
             /**
              * Ustawia poziom trudności gry
@@ -724,72 +868,12 @@
         });
     </script>
 
-    <!-- Dodaję nowe reklamy zgodnie z prośbą -->
-
-    <div class="ad-container">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : 'e57f905cb56d171f7a667907ea9d09ed',
-                'format' : 'iframe',
-                'height' : 250,
-                'width' : 300,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/e57f905cb56d171f7a667907ea9d09ed/invoke.js"></script>
-    </div>
-
-    <div class="ad-container">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '0eb31f55c9c1dfb639e06d25e640027d',
-                'format' : 'iframe',
-                'height' : 600,
-                'width' : 160,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/0eb31f55c9c1dfb639e06d25e640027d/invoke.js"></script>
-    </div>
-
-    <div class="ad-container">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '8b4a8b99c04cf58f2931d06cfab6d287',
-                'format' : 'iframe',
-                'height' : 300,
-                'width' : 160,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/8b4a8b99c04cf58f2931d06cfab6d287/invoke.js"></script>
-    </div>
-
-    <div class="ad-container">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : 'd09b3b9fc18d730293fd08d9393c6a9e',
-                'format' : 'iframe',
-                'height' : 60,
-                'width' : 468,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/d09b3b9fc18d730293fd08d9393c6a9e/invoke.js"></script>
-    </div>
-
-    <div class="ad-container">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '786f8d1076514166c7b4445571f0809d',
-                'format' : 'iframe',
-                'height' : 50,
-                'width' : 320,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/786f8d1076514166c7b4445571f0809d/invoke.js"></script>
-    </div>
+    <!-- REKLAMY STĄD RÓWNIEŻ ZOSTAŁY PRZENIESIONE NA GÓRĘ STRONY -->
+    <!-- <div class="ad-container"> ... </div> -->
+    <!-- <div class="ad-container"> ... </div> -->
+    <!-- <div class="ad-container"> ... </div> -->
+    <!-- <div class="ad-container"> ... </div> -->
+    <!-- <div class="ad-container"> ... </div> -->
 
 </body>
 </html>
