@@ -105,14 +105,14 @@
         }
 
         /* === SEKCJE TEKSTOWE === */
-       .content-section {
+      .content-section {
             text-align: left;
             margin-bottom: 30px;
             padding-bottom: 20px;
             border-bottom: 1px solid var(--color-border);
         }
 
-       .content-section h2 {
+      .content-section h2 {
             font-family: var(--font-heading);
             font-weight: 500;
             color: var(--color-primary);
@@ -123,27 +123,27 @@
             margin-bottom: 15px;
         }
 
-       .content-section p,.content-section ul {
+      .content-section p,.content-section ul {
             font-size: 1.1em;
             color: var(--color-text);
         }
         
-       .content-section li {
+      .content-section li {
             margin-bottom: 10px;
             margin-left: 20px;
         }
-       .content-section strong {
+      .content-section strong {
             color: var(--color-primary);
         }
 
         /* === KONTENERY REKLAM (Wszystkie) === */
-       .ad-container {
+      .ad-container {
             margin: 30px auto;
             text-align: center;
             padding: 20px 0;
             background-color: var(--color-bg);
             border-radius: 8px;
-            min-height: 90px;
+            min-height: 50px; /* Zmniejszono minimalną wysokość, aby pasowała do mniejszych reklam */
         }
 
         /* === GRA - NOWE STYLE === */
@@ -157,7 +157,7 @@
             flex-wrap: wrap;
         }
 
-       .difficulty-button {
+      .difficulty-button {
             font-family: var(--font-body);
             font-weight: bold;
             font-size: 16px;
@@ -170,12 +170,12 @@
             transition: all 0.2s ease;
         }
 
-       .difficulty-button:hover {
+      .difficulty-button:hover {
             background-color: #444;
             transform: scale(1.05);
         }
 
-       .difficulty-button.active {
+      .difficulty-button.active {
             background-color: var(--color-primary);
             color: var(--color-bg);
             border-color: var(--color-primary);
@@ -349,28 +349,28 @@
         }
 
         /* === DOSTOSOWANIE SWEETALERT2 DO MOTYWU MROCZNEGO === */
-       .swal2-popup {
+      .swal2-popup {
             background-color: var(--color-bg-container)!important;
             color: var(--color-text)!important;
             border-radius: 12px!important;
         }
-       .swal2-title {
+      .swal2-title {
             color: var(--color-primary)!important;
             font-family: var(--font-heading)!important;
         }
-       .swal2-html-container {
+      .swal2-html-container {
             color: var(--color-text)!important;
             font-size: 1.2em!important;
         }
-       .swal2-confirm {
+      .swal2-confirm {
             background-color: var(--color-primary)!important;
             font-size: 1.1em!important;
             border-radius: 5px!important;
         }
-       .swal2-icon.swal2-success.swal2-success-ring {
+      .swal2-icon.swal2-success.swal2-success-ring {
             border-color: var(--color-secondary)!important;
         }
-       .swal2-icon.swal2-success [class^=swal2-success-line] {
+      .swal2-icon.swal2-success [class^=swal2-success-line] {
             background-color: var(--color-secondary)!important;
         }
     </style>
@@ -397,7 +397,8 @@
              data-ad-format="auto"
              data-full-width-responsive="true"></ins>
         <script>
-             (adsbygoogle = window.adsbygoogle ||).push({});
+             <!-- POPRAWKA BŁĘDU 1: Dodano '[]' -->
+             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
     </div>
 
@@ -438,19 +439,6 @@
             <div id="target" role="button" tabindex="0" aria-label="Złap Czerwony Cel"></div>
         </div>
 
-        <div class="ad-container" id="ad-container-mid">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : 'cfcc8477017aacefd99edf2adbac32b2',
-                    'format' : 'iframe',
-                    'height' : 90,
-                    'width' : 728,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/cfcc8477017aacefd99edf2adbac32b2/invoke.js"></script>
-        </div>
-
         <div class="ad-container">
             <ins class="adsbygoogle"
                  style="display:block"
@@ -459,7 +447,8 @@
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
             <script>
-                 (adsbygoogle = window.adsbygoogle ||).push({});
+                 <!-- POPRAWKA BŁĘDU 2: Dodano '[]' -->
+                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
 
@@ -473,9 +462,6 @@
             <a href="https://fortstar77.github.io/privacy/" target="_blank" rel="noopener noreferrer">Polityka prywatności</a>
         </p>
     </footer>
-
-    <script async="async" data-cfasync="false" src="//pl28007827.effectivegatecpm.com/e39f069b1a52f9be3d42777a5f9bd02d/invoke.js"></script>
-    <div id="container-e39f069b1a52f9be3d42777a5f9bd02d"></div>
 
     <audio id="sound-click" src="https://raw.githubusercontent.com/kittykatattack/soundForGames/master/sounds/shoot.wav" preload="auto"></audio>
     <audio id="sound-end" src="https://raw.githubusercontent.com/kittykatattack/soundForGames/master/sounds/music.wav" preload="auto"></audio>
@@ -534,9 +520,8 @@
                 
                 // Listener dla klawiatury (Dostępność WCAG)
                 DOM.target.addEventListener('keydown', (e) => {
-                    if (e.key === ' ' |
-
-| e.key === 'Enter') {
+                    // *** POPRAWKA BŁĘDU 3: Naprawiono przerwany operator '||' (OR) ***
+                    if (e.key === ' ' || e.key === 'Enter') {
                         e.preventDefault(); // Zapobiega przewijaniu strony spacją
                         handleTargetClick();
                     }
@@ -738,6 +723,73 @@
 
         });
     </script>
+
+    <!-- Dodaję nowe reklamy zgodnie z prośbą -->
+
+    <div class="ad-container">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : 'e57f905cb56d171f7a667907ea9d09ed',
+                'format' : 'iframe',
+                'height' : 250,
+                'width' : 300,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/e57f905cb56d171f7a667907ea9d09ed/invoke.js"></script>
+    </div>
+
+    <div class="ad-container">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '0eb31f55c9c1dfb639e06d25e640027d',
+                'format' : 'iframe',
+                'height' : 600,
+                'width' : 160,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/0eb31f55c9c1dfb639e06d25e640027d/invoke.js"></script>
+    </div>
+
+    <div class="ad-container">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '8b4a8b99c04cf58f2931d06cfab6d287',
+                'format' : 'iframe',
+                'height' : 300,
+                'width' : 160,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/8b4a8b99c04cf58f2931d06cfab6d287/invoke.js"></script>
+    </div>
+
+    <div class="ad-container">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : 'd09b3b9fc18d730293fd08d9393c6a9e',
+                'format' : 'iframe',
+                'height' : 60,
+                'width' : 468,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/d09b3b9fc18d730293fd08d9393c6a9e/invoke.js"></script>
+    </div>
+
+    <div class="ad-container">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '786f8d1076514166c7b4445571f0809d',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/786f8d1076514166c7b4445571f0809d/invoke.js"></script>
+    </div>
 
 </body>
 </html>
