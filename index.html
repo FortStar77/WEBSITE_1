@@ -62,15 +62,63 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        /* Gradient tła tylko dla motywu ciemnego */
+        /* Gradient tła only dla motywu ciemnego */
         body.dark-theme {
             background-image: radial-gradient(circle at center, #2a2a2a 0%, var(--color-bg) 70%);
         }
 
+        /* === NOWY PRE-HEADER (SOCIAL BAR I LINK) === */
+        .pre-header {
+            background-color: var(--color-bg);
+            border-bottom: 1px solid var(--color-border);
+            padding: 8px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .social-bar {
+            display: flex;
+            gap: 15px;
+        }
+        .social-bar a {
+            color: var(--color-text-secondary);
+            transition: color 0.2s, transform 0.2s;
+        }
+        .social-bar a:hover {
+            color: var(--color-primary);
+            transform: scale(1.1);
+        }
+        .social-bar svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor; /* Kluczowe dla dziedziczenia koloru */
+        }
+        .top-hyperlink a {
+            color: var(--color-text-secondary);
+            font-size: 0.9em;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .top-hyperlink a:hover {
+            color: var(--color-primary);
+            text-decoration: underline;
+        }
+        
+        /* Responsywność dla pre-headera */
+        @media (max-width: 600px) {
+            .pre-header {
+                flex-direction: column;
+                gap: 10px;
+                justify-content: center;
+            }
+        }
+
+
         /* === NAGŁÓWEK I NAWIGACJA === */
         header {
             background-color: var(--color-bg-container);
-            /* Kolor tekstu w nagłówku */
             color: var(--color-text);
             padding: 20px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Lżejszy cień */
@@ -107,7 +155,6 @@
         }
 
         nav a:hover {
-            /* Poprawka koloru hover w motywie jasnym */
             color: #0077b3; 
             text-decoration: underline;
             transform: scale(1.05);
@@ -457,14 +504,13 @@
 </head>
 <body>
 
-    <!-- ZMIANA: Reklamy "od innych" (pop-up) przeniesione na samą górę -->
+    <!-- Reklamy "od innych" (pop-up) -->
     <div id="top-ad-scripts" style="text-align: center;">
-        <!-- REKLAMY POP-UP (PRZENIESIONE NA GÓRĘ) -->
+        <!-- REKLAMY POP-UP -->
         <script type="text/javascript" src="https://www.effectivegatecpm.com/v5hwx133ky?key=1395b32b485fc8345294fb34868b84bb"></script>
         <script type='text/javascript' src='//pl28008059.effectivegatecpm.com/ae/a0/f8/aea0f8601b5d2de4da8c48f64970bc09.js'></script>
     
-        <!-- REKLAMY HIGHPERFORMANCE (PRZENIESIONE NA GÓRĘ) -->
-        <!-- Umieszczam je w .ad-container, aby miały tło i marginesy -->
+        <!-- REKLAMY HIGHPERFORMANCE -->
         <div class="ad-container">
             <script type="text/javascript">
                 atOptions = {
@@ -531,6 +577,28 @@
         </div>
     </div>
 
+    <!-- NOWY PRE-HEADER Z SOCIAL BAREM I LINKIEM -->
+    <div class="pre-header">
+        <div class="social-bar">
+            <!-- Ikony SVG dla Social Mediów -->
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Odwiedź nasz Facebook">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Odwiedź nasz Twitter">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.46 6c-.77.35-1.6.58-2.46.67.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.27 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.48.75 2.79 1.91 3.56-.7-.02-1.36-.21-1.94-.53v.05c0 2.07 1.47 3.8 3.42 4.19-.36.1-.74.15-1.14.15-.27 0-.54-.03-.8-.08.54 1.7 2.11 2.94 3.97 2.97-1.46 1.14-3.3 1.82-5.3 1.82-.34 0-.68-.02-1.02-.06C2.94 19.29 4.88 20 7.03 20c8.43 0 13.04-6.99 13.04-13.04 0-.2 0-.4-.01-.6.9-.65 1.68-1.46 2.3-2.4z"/></svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Odwiedź nasz Instagram">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2c2.72 0 3.05.01 4.12.06 1.06.05 1.79.22 2.42.46.65.25 1.23.58 1.8.98.56.4.98.98 1.38 1.8.24.63.41 1.36.46 2.42.05 1.07.06 1.4.06 4.12s-.01 3.05-.06 4.12c-.05 1.06-.22 1.79-.46 2.42a4.9 4.9 0 01-.98 1.8c-.4.56-.98.98-1.8 1.38-.63.24-1.36.41-2.42.46-1.07.05-1.4.06-4.12.06s-3.05-.01-4.12-.06c-1.06-.05-1.79-.22-2.42-.46a4.9 4.9 0 01-1.8-.98c-.56-.4-.98-.98-1.38-1.8-.24-.63-.41-1.36-.46-2.42C2.01 15.05 2 14.72 2 12s.01-3.05.06-4.12c.05-1.06.22-1.79.46-2.42.25-.65.58-1.23.98-1.8.4-.56.98-.98 1.8-1.38.63-.24 1.36-.41 2.42-.46C8.95 2.01 9.28 2 12 2zm0 1.8c-2.67 0-2.99.01-4.04.06-1.01.05-1.5.21-1.9.38-.47.18-.84.42-1.22.8-.38.38-.62.75-.8 1.22-.17.4-.33.89-.38 1.9C3.81 9.01 3.8 9.33 3.8 12s.01 2.99.06 4.04c.05 1.01.21 1.5.38 1.9.18.47.42.84.8 1.22.38.38.75.62 1.22.8.4.17.89.33 1.9.38 1.05.05 1.37.06 4.04.06s2.99-.01 4.04-.06c1.01-.05 1.5-.21 1.9-.38.47-.18.84-.42 1.22-.8.38-.38.62-.75.8-1.22.17-.4.33-.89.38-1.9.05-1.05.06-1.37.06-4.04s-.01-2.99-.06-4.04c-.05-1.01-.21-1.5-.38-1.9-.18-.47-.42-.84-.8-1.22-.38-.38-.75-.62-1.22-.8-.4-.17-.89-.33-1.9-.38C14.99 3.81 14.67 3.8 12 3.8zm0 3.6a4.6 4.6 0 100 9.2 4.6 4.6 0 000-9.2zm0 7.4a2.8 2.8 0 110-5.6 2.8 2.8 0 010 5.6zm4.8-8.8a1.1 1.1 0 100 2.2 1.1 1.1 0 000-2.2z"/></svg>
+            </a>
+        </div>
+        <div class="top-hyperlink">
+            <!-- Hiperłącze, o które prosiłeś -->
+            <a href="https://www.effectivegatecpm.com/v5hwx133ky?key=1395b32b485fc8345294fb34868b84bb" target="_blank" rel="noopener noreferrer">
+                Reklama
+            </a>
+        </div>
+    </div>
+
 
     <header>
         <h1>Gra: Złap Cel!</h1>
@@ -585,7 +653,7 @@
 
     </main> 
 
-    <!-- ZMIANA: Reklamy Google AdSense przeniesione na dół (przed stopką) -->
+    <!-- Reklamy Google AdSense przeniesione na dół (przed stopką) -->
     <div id="bottom-ads-google" style="text-align: center; background-color: var(--color-bg);">
         <!-- REKLAMY GOOGLE (1) -->
         <div class="ad-container">
@@ -693,7 +761,7 @@
                     });
                 });
 
-                // --- ZMIANA: LOGIKA PRZEŁĄCZNIKA MOTYWU ---
+                // --- LOGIKA PRZEŁĄCZNIKA MOTYWU ---
                 // Domyślnie jest jasno, chyba że w pamięci zapisano 'dark'
                 if (localStorage.getItem('theme') === 'dark') {
                     document.body.classList.add('dark-theme');
@@ -896,9 +964,6 @@
 
         });
     </script>
-
-    <!-- ZMIANA: Reklamy inne niż Google AdSense przeniesione z dołu (już tu ich nie ma) -->
-    <!-- <div id="bottom-ad-scripts" ... > ... </div> -->
 
 </body>
 </html>
