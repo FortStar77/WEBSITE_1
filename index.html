@@ -265,6 +265,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
+            margin-bottom: 40px; /* NOWY ODSTĘP */
         }
        .game-card {
             background: var(--color-bg-container);
@@ -316,7 +317,6 @@
             background-color: #0086cc;
         }
 
-
         /* === GŁÓWNY KONTENER TREŚCI === */
         main.container {
             max-width: 960px;
@@ -366,6 +366,34 @@
      .content-section strong {
             color: var(--color-primary);
       }
+      
+      /* === NOWA SEKCJA SEO/CTA (ULEPSZENIE) === */
+       .seo-boost {
+            background: var(--color-bg);
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+            text-align: left;
+            border: 1px solid var(--color-border);
+        }
+       .seo-boost h2 {
+            /* Nadpisanie h2 z.content-section */
+            text-align: center; 
+            width: 100%;
+            display: block;
+            margin-bottom: 20px;
+            border-bottom: none; /* Bez podkreslenia */
+        }
+       .seo-boost p {
+            font-size: 1.1em;
+            color: var(--color-text);
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+       .seo-boost strong {
+            color: var(--color-primary);
+        }
+
 
         /* === KONTENERY REKLAM (Wszystkie) === */
      .ad-container {
@@ -377,6 +405,12 @@
             min-height: 50px; 
             transition: background-color 0.3s;
         }
+        /* Kontener reklam Google w treści ma mniejszy padding pionowy */
+        main.container.ad-container {
+             padding: 10px 0;
+             margin: 25px auto;
+        }
+
 
         /* === GRA - NOWE STYLE === */
         
@@ -724,6 +758,13 @@
                 </div>
             </div>
         </div>
+
+        <div class="content-section seo-boost">
+            <h2 data-translate-key="sectionSeoTitle">Boost Your Brain, Not Just Your Score</h2>
+            <p data-translate-key="sectionSeoP1">This game is more than just a 10-second challenge. Regular reflex training, like 'Catch the Target!', is a proven method to enhance <strong>hand-eye coordination</strong>, <strong>improve focus</strong>, and <strong>shorten reaction times</strong>. These are skills that apply to everything from sports to driving to everyday tasks.</p>
+            <p data-translate-key="sectionSeoP2">You've read the tips, you've seen the other games—now put that knowledge to the test. Scroll back up, choose your level, and beat your high score!</p>
+        </div>
+
     </div>
 
 
@@ -748,7 +789,7 @@
             </ul>
         </section>
 
-        <div id="bottom-ads-google" style="text-align: center; background-color: var(--color-bg);">
+        <div id="bottom-ads-google" style="text-align: center;">
             <div class="ad-container">
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -849,6 +890,10 @@
                     game2Alt: "Memory Test game thumbnail",
                     game3Img: "https://placehold.co/400x250/FF3B3B/FFFFFF?text=Aim+2.0",
                     game3Alt: "Aim 2.0 game thumbnail",
+                    // NOWA SEKCJA SEO (ULEPSZENIE)
+                    sectionSeoTitle: "Boost Your Brain, Not Just Your Score",
+                    sectionSeoP1: "This game is more than just a 10-second challenge. Regular reflex training, like 'Catch the Target!', is a proven method to enhance <strong>hand-eye coordination</strong>, <strong>improve focus</strong>, and <strong>shorten reaction times</strong>. These are skills that apply to everything from sports to driving to everyday tasks.",
+                    sectionSeoP2: "You've read the tips, you've seen the other games—now put that knowledge to the test. Scroll back up, choose your level, and beat your high score!",
                     // Główna zawartość (gra)
                     sectionReflexTitle: "Test Your Reflexes!",
                     sectionReflexP1: "Welcome to 'Catch the Target!' – a simple but addictive online game that will test your reflexes and reaction speed. The rules are trivially simple, but every millisecond counts. Choose your difficulty level and try to beat your high score!",
@@ -923,6 +968,10 @@
                     game2Alt: "Miniatura gry Test Pamięci",
                     game3Img: "https://placehold.co/400x250/FF3B3B/FFFFFF?text=Celno%C5%9B%C4%87+2.0",
                     game3Alt: "Miniatura gry Celność 2.0",
+                    // NOWA SEKCJA SEO (ULEPSZENIE)
+                    sectionSeoTitle: "Wzmocnij Mózg, Nie Tylko Wynik",
+                    sectionSeoP1: "Ta gra to coś więcej niż 10-sekundowe wyzwanie. Regularny trening refleksu, taki jak 'Złap Cel!', to sprawdzona metoda na wzmocnienie <strong>koordynacji ręka-oko</strong>, <strong>poprawę skupienia</strong> i <strong>skrócenie czasu reakcji</strong>. To umiejętności, które przydają się wszędzie – od sportu, przez prowadzenie samochodu, po codzienne zadania.",
+                    sectionSeoP2: "Przeczytałeś porady, widziałeś inne gry – teraz wykorzystaj tę wiedzę w praktyce. Przewiń stronę w górę, wybierz poziom i pobij swój najlepszy wynik!",
                     // Główna zawartość (gra)
                     sectionReflexTitle: "Sprawdź swój refleks!",
                     sectionReflexP1: "Witaj w \"Złap Cel!\" – prostej, ale wciągającej grze online, która przetestuje Twój refleks i szybkość reakcji. Zasady są banalnie proste, ale liczy się każda milisekunda. Wybierz poziom trudności i spróbuj pobić swój najlepszy wynik!",
@@ -1002,7 +1051,7 @@
             let currentLang = 'en'; // Domyślny język
             
             // Klucze, które zawierają HTML (np. <strong>) i muszą używać.innerHTML
-            const keysWithHtml =;
+            const keysWithHtml =; // DODANO NOWY KLUCZ
 
             // --- 5. FUNKCJA TŁUMACZĄCA ---
 
