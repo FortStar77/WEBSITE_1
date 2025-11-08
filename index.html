@@ -1,57 +1,55 @@
 <!DOCTYPE html>
-<html lang="pl" data-theme="light">
-<head>
+<html lang="en" data-theme="light"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ReflexCore - Profesjonalny Trener Celności i Reakcji</title>
-    <meta name="description" content="Popraw swój czas reakcji, celność i szybkość pisania. Trenuj w wielu trybach gry: Aim Trainer, Tracking, Test Pisania, Gra Pamięciowa i Whac-a-Mole.">
+    <title>ReflexCore - Professional Aim and Reaction Trainer</title>
+    <meta name="description" content="Improve your reaction time, accuracy, and typing speed. Train in multiple game modes: Aim Trainer, Tracking, Typing Test, Memory Game, and Whac-a-Mole.">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     
     <style>
         /* ======================================================================= */
-        /* 1. GLOBALNE ZMIENNE CSS I RESETOWANIE                                   */
+        /* 1. GLOBAL CSS VARIABLES AND RESET                                     */
         /* ======================================================================= */
 
-        /* Definiujemy zmienne CSS w :root, aby były globalnie dostępne  */
         :root {
             --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             --transition-speed: 0.3s;
             
-            /* Zmienne dynamiczne dla gry (kontrolowane przez JS/Ustawienia)  */
+            /* Dynamic game variables (controlled by JS/Settings) */
             --target-size: 50px;
-            --target-color: #FF4136; /* Czerwony */
+            --target-color: #FF4136; /* Red */
             --target-color-hover: #FF7066;
         }
 
-        /* --- Motyw Jasny (Domyślny) --- */
+        /* --- Light Theme (Default) --- */
         [data-theme="light"] {
-            --bg-color: #F8F9FA;          /* Bardzo jasny szary tła */
-            --bg-color-secondary: #FFFFFF;    /* Biały dla paneli */
-            --text-color: #212529;         /* Ciemny tekst */
-            --text-color-muted: #6C757D;   /* Szary tekst */
-            --border-color: #DEE2E6;       /* Jasny border */
-            --accent-color: #007BFF;       /* Główny niebieski */
+            --bg-color: #F8F9FA;
+            --bg-color-secondary: #FFFFFF;
+            --text-color: #212529;
+            --text-color-muted: #6C757D;
+            --border-color: #DEE2E6;
+            --accent-color: #007BFF;
             --accent-color-hover: #0056b3;
             --danger-color: #DC3545;
             --danger-color-hover: #a71d2a;
             --success-color: #28A745;
         }
 
-        /* --- Motyw Ciemny --- */
+        /* --- Dark Theme --- */
         [data-theme="dark"] {
-            --bg-color: #121212;          /* Prawie czarne tło */
-            --bg-color-secondary: #1E1E1E;    /* Ciemnoszary dla paneli */
-            --text-color: #E0E0E0;         /* Jasny tekst */
-            --text-color-muted: #8E8E8E;   /* Szary tekst */
-            --border-color: #333333;       /* Ciemny border */
-            --accent-color: #0D6EFD;       /* Jaśniejszy niebieski */
+            --bg-color: #121212;
+            --bg-color-secondary: #1E1E1E;
+            --text-color: #E0E0E0;
+            --text-color-muted: #8E8E8E;
+            --border-color: #333333;
+            --accent-color: #0D6EFD;
             --accent-color-hover: #3D8BFF;
             --danger-color: #FF4136;
             --danger-color-hover: #FF7066;
             --success-color: #198754;
         }
 
-        /* --- Globalny Reset --- */
+        /* --- Global Reset --- */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -59,7 +57,6 @@
         }
 
         html {
-            /* Płynne przewijanie */
             scroll-behavior: smooth;
         }
 
@@ -149,10 +146,10 @@
         }
 
         /* ======================================================================= */
-        /* 2. UKŁAD STRONY (HEADER, NAV, MAIN, SIDEBAR, FOOTER)                    */
+        /* 2. PAGE LAYOUT (HEADER, NAV, MAIN, SIDEBAR, FOOTER)                     */
         /* ======================================================================= */
 
-        /* --- Nagłówek --- */
+        /* --- Header --- */
         .main-header {
             display: flex;
             flex-wrap: wrap;
@@ -176,7 +173,7 @@
             align-items: center;
         }
 
-        /* --- Nawigacja --- */
+        /* --- Navigation --- */
         .main-nav {
             display: flex;
             flex-wrap: wrap;
@@ -203,10 +200,10 @@
             color: #FFFFFF;
         }
 
-        /* --- Główny Układ Aplikacji (Grid) --- */
+        /* --- Main App Layout (Grid) --- */
         .app-container {
             display: grid;
-            /* Definiujemy 3 kolumny: Ustawienia (auto), Treść (1fr), Sidebar (auto) */
+            /* Defining 3 columns: Settings (auto), Content (1fr), Sidebar (auto) */
             grid-template-columns: auto 1fr auto;
             width: 100%;
             max-width: 1600px;
@@ -216,7 +213,7 @@
             flex-grow: 1;
         }
 
-        /* --- Panel Ustawień --- */
+        /* --- Settings Panel --- */
         .settings-panel {
             grid-column: 1 / 2;
             background-color: var(--bg-color-secondary);
@@ -224,17 +221,17 @@
             border-radius: 8px;
             padding: 1rem;
             width: 280px;
-            align-self: start; /* Przyklejony do góry */
+            align-self: start; /* Stick to top */
             transition: all 0.3s ease-in-out;
         }
-        /* Logika pokazywania/ukrywania panelu */
+        /* Show/hide logic */
         .settings-panel[hidden] {
-            display: block!important; /* Pozwalamy na animację */
+            display: block!important; /* Allow animation */
             transform: translateX(-100%);
             opacity: 0;
             width: 0;
             padding: 1rem 0;
-            margin-right: -1rem; /* Kompensacja 'gap' */
+            margin-right: -1rem; /* Compensate 'gap' */
         }
         .settings-panel.open {
             transform: translateX(0);
@@ -270,7 +267,7 @@
             border: 1px solid var(--border-color);
         }
 
-        /* --- Przełącznik Motywu (Toggle Switch) --- */
+        /* --- Theme Toggle Switch --- */
         .toggle-switch {
             position: relative;
             width: 100px;
@@ -317,12 +314,12 @@
             right: 10px;
             color: var(--text-color-muted);
         }
-        /* Stan "Ciemny" (zaznaczony) */
+        /* "Dark" state (checked) */
         .toggle-input:checked +.toggle-label {
             background-color: var(--bg-color-secondary);
         }
         .toggle-input:checked +.toggle-label::before {
-            transform: translateX(60px); /* Przesunięcie kulki */
+            transform: translateX(60px); /* Move the knob */
             background-color: var(--accent-color);
         }
         .toggle-input:checked +.toggle-label .toggle-text-light {
@@ -333,22 +330,22 @@
         }
 
 
-        /* --- Główna Treść --- */
+        /* --- Main Content --- */
         .main-content {
             grid-column: 2 / 3;
             background-color: var(--bg-color-secondary);
             border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 2rem;
-            min-height: 70vh; /* Minimalna wysokość, aby strona wyglądała dobrze */
+            min-height: 70vh;
         }
         .game-screen {
-            display: none; /* Domyślnie ukryte */
+            display: none; /* Hidden by default */
             flex-direction: column;
             align-items: center;
         }
         .game-screen.active {
-            display: flex; /* Pokazujemy only aktywny ekran */
+            display: flex; /* Show only active screen */
         }
         .game-title,.game-subtitle {
             text-align: center;
@@ -365,7 +362,7 @@
             margin-top: 1rem;
         }
 
-        /* --- Panel Boczny (Sidebar) --- */
+        /* --- Sidebar --- */
         .sidebar {
             grid-column: 3 / 4;
             background-color: var(--bg-color-secondary);
@@ -395,11 +392,11 @@
             font-weight: bold;
         }
 
-        /* --- Stopka --- */
+        /* --- Footer --- */
         .main-footer {
             width: 100%;
             padding: 2rem;
-            margin-top: auto; /* Przykleja stopkę na dole */
+            margin-top: auto; /* Pushes footer to bottom */
             text-align: center;
             background-color: var(--bg-color-secondary);
             border-top: 1px solid var(--border-color);
@@ -408,7 +405,7 @@
         }
 
         /* ======================================================================= */
-        /* 3. STYLE DLA REKLAM (KLUCZOWE DLA ZGODNOŚCI)                            */
+        /* 3. ADVERTISEMENT STYLES (KEY FOR COMPLIANCE)                         */
         /* ======================================================================= */
 
         .ad-container {
@@ -418,13 +415,12 @@
             justify-content: center;
             background-color: var(--bg-color);
             border: 1px dashed var(--border-color);
-            min-height: 50px; /* Minimalna wysokość dla bannerów */
+            min-height: 50px;
             margin: 1rem 0;
         }
-
-        /* Etykieta "Advertisement"
-          Jest to WYMÓG Google AdSense, aby wyraźnie oddzielić reklamy od treści.
-          Zapobiega to karom za "mylący układ".[19]
+        
+        /* "Advertisement" label
+           This is a Google AdSense REQUIREMENT to clearly separate ads.
         */
         .ad-label {
             position: absolute;
@@ -441,52 +437,47 @@
             z-index: 1;
         }
 
-        /* Tekst zastępczy (placeholder) dla pustych slotów */
         .ad-placeholder-text {
             font-size: 0.9rem;
             color: var(--text-color-muted);
             font-weight: 500;
         }
 
-        /* Style dla specyficznych slotów */
+        /* Styles for specific slots */
         .header-ad-container {
             display: flex;
             gap: 1rem;
         }
         .ad-container-top-banner {
-            width: 300px; /* Można dostosować */
+            width: 300px; 
             height: 50px;
-            margin: 0; /* Bez marginesu w nagłówku */
+            margin: 0; 
         }
         .ad-container-google-middle {
             width: 100%;
             max-width: 336px;
             min-height: 280px;
-            margin: 2rem auto; /* Wyraźne oddzielenie */
+            margin: 2rem auto; 
         }
         .ad-container-sidebar {
             width: 100%;
-            min-height: 250px; /* Domyślnie, dostosuje się do 160x600 */
+            min-height: 250px; 
         }
 
         /* ======================================================================= */
-        /* 4. STYLE DLA MODALI (OKNA DIALOGOWE)                                    */
+        /* 4. MODAL STYLES (DIALOGS)                                               */
         /* ======================================================================= */
 
-        /* Stylizacja natywnego elementu <dialog>  
-          i jego tła (backdrop)
-        */
         .modal {
             border: none;
             border-radius: 8px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            padding: 0; /* Usuwamy domyślny padding */
+            padding: 0; 
             width: 90%;
             max-width: 500px;
             background: var(--bg-color-secondary);
             color: var(--text-color);
         }
-        /* Tło za modalem */
         .modal::backdrop {
             background-color: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(3px);
@@ -537,12 +528,11 @@
             100% { transform: scale(1); }
         }
 
-        /* Specjalne style dla modala reklamowego */
+        /* Special ad modal styles */
         .modal-ad .modal-content {
             padding: 0;
         }
         .modal-ad .modal-title {
-            /* Etykieta AdSense wewnątrz modala */
             text-align: center;
             font-size: 1rem;
             padding: 0.5rem;
@@ -569,21 +559,21 @@
 
 
         /* ======================================================================= */
-        /* 5. STYLE DLA TRYBÓW GRY (AIM TRAINER, TYPING, MEMORY...)                 */
+        /* 5. GAME MODE STYLES (AIM TRAINER, TYPING, MEMORY...)                    */
         /* ======================================================================= */
 
-        /* --- Kontener Gry --- */
+        /* --- Game Container --- */
         .game-area {
             width: 100%;
-            height: 60vh; /* 60% wysokości widoku */
+            height: 60vh;
             min-height: 400px;
             background-color: var(--bg-color);
             border: 2px solid var(--border-color);
             border-radius: 8px;
-            position: relative; /* Kluczowe dla pozycjonowania celów */
+            position: relative;
             overflow: hidden;
             cursor: crosshair;
-            user-select: none; /* Zapobiega zaznaczaniu tekstu podczas gry */
+            user-select: none;
         }
         .game-start-screen {
             display: flex;
@@ -603,9 +593,8 @@
             margin-top: 1rem;
         }
 
-        /* --- Cel (Aim Trainer & Tracking) --- */
+        /* --- Target (Aim Trainer & Tracking) --- */
         .target {
-            /* Używamy zmiennych CSS do dynamicznej kontroli  */
             width: var(--target-size);
             height: var(--target-size);
             background-color: var(--target-color);
@@ -620,7 +609,7 @@
             transform: scale(1.1);
         }
 
-        /* --- Test Pisania (Typing Test) --- */
+        /* --- Typing Test --- */
         .typing-test-container {
             display: flex;
             flex-direction: column;
@@ -690,7 +679,7 @@
             align-self: center;
         }
 
-        /* --- Gra Pamięciowa (Memory Game) --- */
+        /* --- Memory Game --- */
         .memory-game-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -698,11 +687,11 @@
             width: 100%;
             max-width: 500px;
             margin: 0 auto;
-            perspective: 1000px; /* Dla efektu 3D */
+            perspective: 1000px; /* For 3D effect */
         }
         .memory-card {
             width: 100%;
-            aspect-ratio: 1 / 1; /* Idealny kwadrat */
+            aspect-ratio: 1 / 1;
             position: relative;
             transform-style: preserve-3d;
             transition: transform 0.6s;
@@ -716,7 +705,7 @@
             width: 100%;
             height: 100%;
             position: absolute;
-            backface-visibility: hidden; 
+            backface-visibility: hidden;  
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -736,7 +725,7 @@
             font-weight: bold;
         }
 
-        /* --- Gra Whac-a-Mole --- */
+        /* --- Whac-a-Mole Game --- */
         .whac-game-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -748,7 +737,7 @@
         .whac-hole {
             width: 100%;
             aspect-ratio: 1 / 1;
-            background-color: #A0522D; /* Kolor ziemi */
+            background-color: #A0522D; /* Dirt color */
             border-radius: 50%;
             position: relative;
             overflow: hidden;
@@ -758,18 +747,18 @@
         .whac-mole {
             width: 70%;
             height: 70%;
-            background-color: #D2B48C; /* Kolor kreta */
+            background-color: #D2B48C; /* Mole color */
             border: 3px solid #000;
             border-radius: 50%;
             position: absolute;
             bottom: 0;
             left: 15%;
             transition: transform 0.2s ease-out;
-            transform: translateY(100%); /* Schowany */
+            transform: translateY(100%); /* Hidden */
             cursor: pointer;
         }
         .whac-hole.up .whac-mole {
-            transform: translateY(0); /* Wysunięty */
+            transform: translateY(0); /* Popped up */
         }
 
 
@@ -779,43 +768,43 @@
 
         @media (max-width: 1200px) {
            .app-container {
-                /* Przenosimy sidebar pod treść, jeśli ustawienia są otwarte */
+                /* Move sidebar below content if settings are open */
                 grid-template-columns: auto 1fr;
-            }
+           }
            .sidebar {
-                grid-column: 1 / 3; /* Zajmuje całą szerokość */
-                grid-row: 3 / 4; /* Pod treścią */
+                grid-column: 1 / 3; /* Full width */
+                grid-row: 3 / 4; /* Below content */
                 width: 100%;
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 1rem;
-            }
+           }
            .ad-container-sidebar {
-                /* Zmieniamy Skyscraper na bardziej odpowiedni format */
-                min-height: 250px; 
-            }
+                /* Change Skyscraper to a more suitable format */
+                min-height: 250px;  
+           }
            .main-content {
-                /* Jeśli ustawienia są otwarte */
+                /* If settings are open */
                 grid-column: 2 / 3;
-            }
+           }
            .main-content.full-width {
-                /* Jeśli ustawienia są zamknięte */
+                /* If settings are closed */
                 grid-column: 1 / 3;
-            }
+           }
         }
 
         @media (max-width: 768px) {
            .app-container {
-                /* Ustawienia i treść w jednej kolumnie */
+                /* Settings and content in one column */
                 grid-template-columns: 1fr;
                 margin: 0.5rem auto;
                 padding: 0 0.5rem;
-            }
+           }
            .settings-panel {
                 grid-column: 1 / 2;
                 grid-row: 1 / 2;
                 width: 100%;
-                /* Ukrywanie/Pokaż na mobilkach */
+                /* Hide/Show on mobile */
                 max-height: 0;
                 padding: 0 1rem;
                 border: none;
@@ -823,73 +812,73 @@
                 opacity: 0;
                 transform: translateY(-20px);
                 transition: all 0.3s ease-in-out;
-            }
+           }
            .settings-panel.open {
-                max-height: 1000px; /* Wystarczająco dużo */
+                max-height: 1000px; /* Enough */
                 padding: 1rem;
                 opacity: 1;
                 transform: translateY(0);
                 border: 1px solid var(--border-color);
-            }
+           }
            .main-content,.main-content.full-width {
                 grid-column: 1 / 2;
                 grid-row: 2 / 3;
                 padding: 1rem;
                 min-height: 60vh;
-            }
+           }
            .sidebar {
                 grid-column: 1 / 2;
                 grid-row: 3 / 4;
-                grid-template-columns: 1fr; /* Statystyki i reklama jedna pod drugą */
-            }
+                grid-template-columns: 1fr; /* Stats and ad one below the other */
+           }
            .main-header {
                 padding: 1rem;
                 flex-direction: column;
                 gap: 1rem;
-            }
+           }
            .header-ad-container {
                 width: 100%;
                 justify-content: center;
-            }
+           }
             
-            /* KRYTYCZNA REGUŁA ZGODNOŚCI Z ADSENSE 
-              Polityka Google zaleca tylko jedną jednostkę ATF na mobilkach.
-              Ukrywamy jedną z dwóch reklam z nagłówka, aby zachować zgodność.
-            */
-            #ad-header-top-right {
+           /* CRITICAL ADSENSE COMPLIANCE RULE
+              Google policy recommends only one ATF unit on mobile.
+              We hide one of the two header ads to maintain compliance.
+           */
+           #ad-header-top-right {
                 display: none;
-            }
+           }
            .ad-container-top-banner {
                 width: 100%;
                 max-width: 320px;
-            }
+           }
             
            .main-nav {
-                /* Pozwalamy przyciskom zawijać się i centrować */
+                /* Allow buttons to wrap and center */
                 gap: 0.25rem;
                 padding: 0.5rem;
-            }
+           }
            .nav-btn {
                 font-size: 0.85rem;
                 padding: 0.5rem 0.75rem;
-            }
+           }
             
            .modal {
                 width: 95%;
-            }
+           }
             
            .game-area {
                 min-height: 300px;
                 height: 50vh;
-            }
+           }
             
            .memory-game-grid {
                 gap: 5px;
-            }
+           }
            .whac-game-grid {
                 gap: 10px;
-            }
-        } 
+           }
+        }  
     </style>
 
 </head>
@@ -913,61 +902,61 @@
         </div>
         
         <div class="settings-toggle-container">
-            <button id="settings-toggle-btn" class="icon-btn" aria-label="Otwórz ustawienia">
+            <button id="settings-toggle-btn" class="icon-btn" aria-label="Open settings">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.826 12.0001C19.826 13.3854 19.4533 14.7127 18.7613 15.8642L20.552 17.6549C20.7473 17.8502 20.7473 18.1668 20.552 18.362L19.138 19.776C18.9427 19.9713 18.6261 19.9713 18.4308 19.776L16.6117 17.9568C15.5393 18.5714 14.321 18.9664 13.0001 19.0833V21.0963C13.0001 21.3745 12.7762 21.5984 12.498 21.5984L11.5022 21.5984C11.224 21.5984 11.0001 21.3745 11.0001 21.0963V19.0833C9.67916 18.9664 8.46089 18.5714 7.38848 17.9568L5.56937 19.776C5.37407 19.9713 5.05748 19.9713 4.86218 19.776L3.44818 18.362C3.25288 18.1668 3.25288 17.8502 3.44818 17.6549L5.23889 15.8642C4.54694 14.7127 4.1742 13.3854 4.1742 12.0001C4.1742 10.6147 4.54694 9.28746 5.23889 8.13592L3.44818 6.34521C3.25288 6.14991 3.25288 5.83332 3.44818 5.63802L4.86218 4.22402C5.05748 4.02872 5.37407 4.02872 5.56937 4.22402L7.38848 6.04313C8.46089 5.42854 9.67916 5.03357 11.0001 5.00013V2.90381C11.0001 2.62564 11.224 2.40173 11.5022 2.40173L12.498 2.40173C12.7762 2.40173 13.0001 2.62564 13.0001 2.90381V5.00013C14.321 5.03357 15.5393 5.42854 16.6117 6.04313L18.4308 4.22402C18.6261 4.02872 18.9427 4.02872 19.138 4.22402L20.552 5.63802C20.7473 5.83332 20.7473 6.14991 20.552 6.34521L18.7613 8.13592C19.4533 9.28746 19.826 10.6147 19.826 12.0001ZM12.0001 15.5C13.9331 15.5 15.5001 13.933 15.5001 12C15.5001 10.067 13.9331 8.5 12.0001 8.5C10.0671 8.5 8.50008 10.067 8.50008 12C8.50008 13.933 10.0671 15.5 12.0001 15.5Z"></path></svg>
             </button>
         </div>
     </header>
 
     <nav class="main-nav">
-        <button class="nav-btn active" data-game="aimTrainer">Trener Celności</button>
-        <button class="nav-btn" data-game="tracking">Śledzenie (Tracking)</button>
-        <button class="nav-btn" data-game="typingTest">Test Pisania (WPM)</button>
-        <button class="nav-btn" data-game="memoryGame">Gra Pamięciowa</button>
+        <button class="nav-btn active" data-game="aimTrainer">Aim Trainer</button>
+        <button class="nav-btn" data-game="tracking">Tracking</button>
+        <button class="nav-btn" data-game="typingTest">Typing Test (WPM)</button>
+        <button class="nav-btn" data-game="memoryGame">Memory Game</button>
         <button class="nav-btn" data-game="whacAMole">Whac-a-Mole</button>
-        <button class="nav-btn" data-section="blog">Blog / Poradniki</button>
+        <button class="nav-btn" data-section="blog">Blog / Guides</button>
         <button class="nav-btn" data-section="faq">FAQ</button>
     </nav>
 
     <div class="app-container">
     
         <aside id="settings-panel" class="settings-panel" hidden>
-            <h2 class="settings-title">Ustawienia</h2>
+            <h2 class="settings-title">Settings</h2>
             
             <div class="setting-group">
-                <label for="theme-toggle" class="setting-label">Motyw Strony</label>
+                <label for="theme-toggle" class="setting-label">Site Theme</label>
                 <div class="toggle-switch">
                     <input type="checkbox" id="theme-toggle" class="toggle-input">
                     <label for="theme-toggle" class="toggle-label">
-                        <span class="toggle-text-light">Jasny</span>
-                        <span class="toggle-text-dark">Ciemny</span>
+                        <span class="toggle-text-light">Light</span>
+                        <span class="toggle-text-dark">Dark</span>
                     </label>
                 </div>
             </div>
             
             <div class="setting-group">
-                <label for="language-select" class="setting-label">Język</label>
+                <label for="language-select" class="setting-label">Language</label>
                 <select id="language-select" class="setting-select">
                     <option value="pl">Polski</option>
-                    <option value="en">English</option>
+                    <option value="en" selected>English</option>
                 </select>
             </div>
             
             <hr class="settings-divider">
-            <h3 class="settings-subtitle">Ustawienia Gry (Aim Trainer)</h3>
+            <h3 class="settings-subtitle">Game Settings (Aim Trainer)</h3>
             
             <div class="setting-group">
-                <label for="target-size-slider" class="setting-label">Rozmiar Celu: <span id="target-size-value">50</span>px</label>
+                <label for="target-size-slider" class="setting-label">Target Size: <span id="target-size-value">50</span>px</label>
                 <input type="range" id="target-size-slider" class="setting-slider" min="10" max="100" value="50" data-css-var="--target-size">
             </div>
             
             <div class="setting-group">
-                <label for="target-color-picker" class="setting-label">Kolor Celu</label>
+                <label for="target-color-picker" class="setting-label">Target Color</label>
                 <input type="color" id="target-color-picker" class="setting-color-picker" value="#FF4136" data-css-var="--target-color">
             </div>
             
             <div class="setting-group">
-                <button id="reset-stats-btn" class="btn btn-danger">Zresetuj Najlepsze Wyniki</button>
+                <button id="reset-stats-btn" class="btn btn-danger">Reset High Scores</button>
             </div>
             
         </aside>
@@ -975,17 +964,17 @@
         <main id="main-content" class="main-content">
         
             <div id="welcome-screen" class="game-screen active">
-                <h2 class="game-title">Witaj w ReflexCore</h2>
-                <p class="game-description">Wybierz tryb gry z nawigacji powyżej, aby rozpocząć trening.</p>
+                <h2 class="game-title">Welcome to ReflexCore</h2>
+                <p class="game-description">Select a game mode from the navigation above to start training.</p>
                 
                 <div id="ad-google-middle" class="ad-container ad-container-google-middle">
                     <div class="ad-label">Advertisement</div>
                     <div class="ad-placeholder-text"></div>
                 </div>
                 
-                <h3 class="game-subtitle">Twoje Najlepsze Wyniki</h3>
+                <h3 class="game-subtitle">Your High Scores</h3>
                 <div id="high-scores-display" class="high-scores">
-                    <p>Ładowanie wyników...</p>
+                    <p>Loading scores...</p>
                 </div>
             </div>
 
@@ -999,22 +988,22 @@
         
         <aside class="sidebar">
             <div class="sidebar-widget">
-                <h3 class="widget-title">Statystyki Live</h3>
+                <h3 class="widget-title">Live Stats</h3>
                 <div id="live-stats" class="live-stats">
                     <div class="stat-item">
-                        <span class="stat-label">Trafienia:</span>
+                        <span class="stat-label">Hits:</span>
                         <span id="stat-hits" class="stat-value">0</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-label">Pudła:</span>
+                        <span class="stat-label">Misses:</span>
                         <span id="stat-misses" class="stat-value">0</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-label">Celność:</span>
+                        <span class="stat-label">Accuracy:</span>
                         <span id="stat-accuracy" class="stat-value">0%</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-label">Czas:</span>
+                        <span class="stat-label">Time:</span>
                         <span id="stat-timer" class="stat-value">0.0s</span>
                     </div>
                 </div>
@@ -1028,38 +1017,38 @@
     </div>
 
     <footer class="main-footer">
-        <p>&copy; 2025 ReflexCore. Wszelkie prawa zastrzeżone.</p>
+        <p>&copy; 2025 ReflexCore. All rights reserved.</p>
         <p>
-            <a href="/privacy.html">Polityka Prywatności</a> | 
-            <a href="/terms.html">Warunki Użytkowania</a>
+            <a href="https://fortstar77.github.io/privacy" target="_blank">Privacy Policy</a> | 
+            <a href="/terms.html">Terms of Use</a>
         </p>
     </footer>
 
     <dialog id="stats-modal" class="modal">
         <div class="modal-content">
-            <button class="modal-close-btn" data-close-modal="stats-modal" aria-label="Zamknij okno statystyk">&times;</button>
-            <h2 id="modal-title" class="modal-title">Gra Zakończona!</h2>
+            <button class="modal-close-btn" data-close-modal="stats-modal" aria-label="Close statistics modal">&times;</button>
+            <h2 id="modal-title" class="modal-title">Game Over!</h2>
             <div id="modal-body" class="modal-body">
-                <p>Średni czas reakcji: <span id="final-avg-reaction">0</span> ms</p>
-                <p>Trafienia: <span id="final-hits">0</span></p>
-                <p>Pudła: <span id="final-misses">0</span></p>
-                <p>Celność: <span id="final-accuracy">0</span>%</p>
+                <p>Average reaction time: <span id="final-avg-reaction">0</span> ms</p>
+                <p>Hits: <span id="final-hits">0</span></p>
+                <p>Misses: <span id="final-misses">0</span></p>
+                <p>Accuracy: <span id="final-accuracy">0</span>%</p>
                 <p>CPS: <span id="final-cps">0</span></p>
-                <h3 id="final-new-highscore" class="new-highscore" hidden>Nowy Rekord!</h3>
+                <h3 id="final-new-highscore" class="new-highscore" hidden>New High Score!</h3>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" data-close-modal="stats-modal">Zamknij</button>
+                <button class="btn btn-primary" data-close-modal="stats-modal">Close</button>
             </div>
         </div>
     </dialog>
     
     <dialog id="ad-notification-modal" class="modal modal-ad">
         <div class="modal-content">
-            <button class="modal-close-btn" data-close-modal="ad-notification-modal" aria-label="Zamknij reklamę">&times;</button>
+            <button class="modal-close-btn" data-close-modal="ad-notification-modal" aria-label="Close ad">&times;</button>
             <h2 class="modal-title ad-label">Advertisement</h2>
             <div id="ad-notification-content" class="modal-body">
                 <div class="ad-placeholder-text"></div>
-                <p class="ad-sub-text">Gra rozpocznie się za chwilę...</p>
+                <p class="ad-sub-text">The game will start shortly...</p>
             </div>
         </div>
     </dialog>
@@ -1067,89 +1056,89 @@
     <script>
         /*
         =======================================================================
-         GŁÓWNY PLIK APLIKACJI: ReflexCore v1.0
-         Całkowita długość kodu: > 2000 linii
+         MAIN APPLICATION FILE: ReflexCore v1.0
+         Total code length: > 2000 lines
          
-         Spis Treści:
-         1. Moduł 1: Inicjalizacja, Stan Aplikacji i Selektory DOM
-         2. Moduł 2: Zarządzanie Ustawieniami (Motyw, Język, Gra)
-         3. Moduł 3: Zarządzanie Interfejsem (Nawigacja, Modale)
-         4. Moduł 4: Zarządzanie Danymi (LocalStorage, Wyniki)
-         5. Moduł 5: Tryb Gry - Trener Celności (Aim Trainer)
-         6. Moduł 6: Tryb Gry - Śledzenie (Tracking)
-         7. Moduł 7: Tryb Gry - Test Szybkiego Pisania (Typing Test)
-         8. Moduł 8: Tryb Gry - Gra Pamięciowa (Memory Game)
-         9. Moduł 9: Tryb Gry - Whac-a-Mole
-         10. Moduł 10: Inicjalizacja Aplikacji (Główna Pętla)
+         Table of Contents:
+         1. Module 1: Initialization, App State, and DOM Selectors
+         2. Module 2: Settings Management (Theme, Language, Game)
+         3. Module 3: UI Management (Navigation, Modals)
+         4. Module 4: Data Management (LocalStorage, Scores)
+         5. Module 5: Game Mode - Aim Trainer
+         6. Module 6: Game Mode - Tracking
+         7. Module 7: Game Mode - Typing Test
+         8. Module 8: Game Mode - Memory Game
+         9. Module 9: Game Mode - Whac-a-Mole
+         10. Module 10: App Initialization (Main Loop)
         =======================================================================
         */
 
-        // Używamy "strict mode" dla lepszej jakości kodu i unikania cichych błędów
+        // Use "strict mode" for better code quality and error handling
         'use strict';
 
         /*
         =======================================================================
-         1. Moduł 1: Inicjalizacja, Stan Aplikacji i Selektory DOM
+         1. Module 1: Initialization, App State, and DOM Selectors
         =======================================================================
         */
 
-        // Obiekt przechowujący globalny stan aplikacji
+        // Object holding the global application state
         const AppState = {
-            // Przechowuje referencje do wszystkich kluczowych elementów DOM
-            // Pozwala to na uniknięcie wielokrotnego odwoływania się do document.querySelector
+            // Stores references to all key DOM elements
+            // This avoids repeated document.querySelector calls
             DOM: {},
             
-            // Przechowuje ustawienia użytkownika (ładowane z localStorage)
+            // Stores user settings (loaded from localStorage)
             settings: {
                 theme: 'light',
-                language: 'pl',
+                language: 'en', // Zmieniono domyślny na 'en'
                 gameSettings: {
-                    '--target-size': 50, // Wartość domyślna
-                    '--target-color': '#FF4136' // Wartość domyślna
+                    '--target-size': 50, // Default value
+                    '--target-color': '#FF4136' // Default value
                 }
             },
             
-            // Przechowuje statystyki i timery dla aktualnie aktywnej gry
+            // Stores stats and timers for the currently active game
             currentGame: {
                 isActive: false,
-                gameMode: null,      // np. 'aimTrainer', 'typingTest'
+                gameMode: null, // e.g., 'aimTrainer', 'typingTest'
                 timerInterval: null,
                 startTime: 0,
                 endTime: 0,
                 hits: 0,
                 misses: 0,
-                reactionTimes: [], // Tablica do przechowywania czasów reakcji [31]
+                reactionTimes: [], // Array for storing reaction times
                 lastReactionTime: 0,
                 cpsCounter: {
                     clicks: 0,
                     timer: null,
                     isMeasuring: false
                 },
-                accuracy: 0 // Dodane dla testu pisania
+                accuracy: 0 // Added for typing test
             },
             
-            // Przechowuje najlepsze wyniki (ładowane z localStorage)
+            // Stores high scores (loaded from localStorage)
             highScores: {}
         };
 
         /**
-         * Funkcja inicjalizująca selektory DOM.
-         * Wywoływana jeden raz po załadowaniu drzewa DOM.
+         * Initializes DOM selectors.
+         * Called once after the DOM tree has loaded.
          */
         function initializeDOMSelectors() {
-            const D = AppState.DOM; // Skrót
+            const D = AppState.DOM; // Shortcut
             
-            // Główne kontenery
+            // Main containers
             D.mainContent = document.getElementById('main-content');
             D.gameContainer = document.getElementById('game-container');
             D.staticContentContainer = document.getElementById('static-content-container');
             D.welcomeScreen = document.getElementById('welcome-screen');
             
-            // Nawigacja
+            // Navigation
             D.mainNav = document.querySelector('.main-nav');
             D.navButtons = document.querySelectorAll('.nav-btn');
             
-            // Panel Ustawień
+            // Settings Panel
             D.settingsPanel = document.getElementById('settings-panel');
             D.settingsToggleBtn = document.getElementById('settings-toggle-btn');
             D.themeToggle = document.getElementById('theme-toggle');
@@ -1159,7 +1148,7 @@
             D.targetColorPicker = document.getElementById('target-color-picker');
             D.resetStatsBtn = document.getElementById('reset-stats-btn');
             
-            // Statystyki na żywo (Sidebar)
+            // Live Stats (Sidebar)
             D.liveStats = {
                 hits: document.getElementById('stat-hits'),
                 misses: document.getElementById('stat-misses'),
@@ -1167,80 +1156,78 @@
                 timer: document.getElementById('stat-timer')
             };
             
-            // Modal Statystyk Końcowych
+            // Final Stats Modal
             D.statsModal = document.getElementById('stats-modal');
             D.statsModalTitle = document.getElementById('modal-title');
             D.statsModalBody = document.getElementById('modal-body');
             D.statsModalNewHighScore = document.getElementById('final-new-highscore');
             D.statsModalCloseBtns = document.querySelectorAll('[data-close-modal="stats-modal"]');
             
-            // Modal Reklamy (Powiadomienie)
+            // Ad (Notification) Modal
             D.adNotificationModal = document.getElementById('ad-notification-modal');
             D.adNotificationModalCloseBtns = document.querySelectorAll('[data-close-modal="ad-notification-modal"]');
             
-            // Wyświetlanie Najlepszych Wyników
+            // High Scores Display
             D.highScoresDisplay = document.getElementById('high-scores-display');
             
-            // Referencja do :root dla zmiennych CSS 
+            // Reference to :root for CSS variables
             D.root = document.documentElement;
         }
 
 
         /*
         =======================================================================
-         2. Moduł 2: Zarządzanie Ustawieniami (Motyw, Język, Gra)
-            - Naprawa zgłoszonego błędu przełączania motywu.
-            - Użycie architektury opartej na Zmiennych CSS.[7, 6]
+         2. Module 2: Settings Management (Theme, Language, Game)
         =======================================================================
         */
 
         /**
-         * Inicjalizuje event listenery dla panelu ustawień.
+         * Initializes event listeners for the settings panel.
          */
         function initializeSettingsPanel() {
             const D = AppState.DOM;
 
-            // Przełącznik otwierania/zamykania panelu
+            // Panel open/close toggle
             D.settingsToggleBtn.addEventListener('click', toggleSettingsPanel);
             
-            // Przełącznik Motywu
+            // Theme Toggle
             D.themeToggle.addEventListener('change', handleThemeChange);
             
-            // Przełącznik Języka (obecnie tylko placeholder, wymaga implementacji i18n)
+            // Language Toggle (currently a placeholder, requires i18n implementation)
             D.languageSelect.addEventListener('change', handleLanguageChange);
             
-            // Suwak Rozmiaru Celu
+            // Target Size Slider
             D.targetSizeSlider.addEventListener('input', handleGameSettingChange);
             
-            // Wybór Koloru Celu
+            // Target Color Picker
             D.targetColorPicker.addEventListener('input', handleGameSettingChange);
             
-            // Resetowanie Statystyk
+            // Reset Stats
             D.resetStatsBtn.addEventListener('click', handleResetHighScores);
         }
 
         /**
-         * Pokazuje lub ukrywa panel ustawień.
+         * Shows or hides the settings panel.
          */
         function toggleSettingsPanel() {
             const D = AppState.DOM;
             const isOpen = D.settingsPanel.classList.toggle('open');
             D.settingsPanel.hidden = !isOpen;
             
-            // Dostosowanie szerokości głównej treści dla lepszego RWD
-            if (window.innerWidth < 1200) { // Na mobilkach/tabletach nie zmieniamy layoutu
-                // Na większych ekranach
+            // Adjust main content width for better RWD
+            if (window.innerWidth < 1200) { // On mobile/tablet, layout doesn't change
+                // On larger screens
                 D.mainContent.classList.toggle('full-width', !isOpen);
             }
             
-            // Ustawienia ARIA dla dostępności
+            // ARIA settings for accessibility
             D.settingsToggleBtn.setAttribute('aria-expanded', isOpen.toString());
             D.settingsPanel.setAttribute('aria-hidden', (!isOpen).toString());
         }
 
         /**
-         * Obsługuje zmianę motywu (Jasny/Ciemny).
-         * @param {Event} e - Zdarzenie 'change' z przełącznika.
+         * Handles theme change (Light/Dark).
+         * @param {Event} e - The 'change' event from the toggle.
          */
         function handleThemeChange(e) {
             const newTheme = e.target.checked ? 'dark' : 'light';
@@ -1249,75 +1236,78 @@
         }
 
         /**
-         * Aplikuje wybrany motyw, zmieniając atrybut na tagu <html>.
-         * @param {string} themeName - Nazwa motywu ('light' lub 'dark').
+         * Applies the selected theme by changing the attribute on the <html> tag.
+         * @param {string} themeName - The theme name ('light' or 'dark').
          */
         function applyTheme(themeName) {
             AppState.DOM.root.setAttribute('data-theme', themeName);
             AppState.settings.theme = themeName;
             
-            // Ustawia stan przełącznika zgodnie z załadowanym motywem
+            // Set the toggle's state according to the loaded theme
             if (AppState.DOM.themeToggle) {
                 AppState.DOM.themeToggle.checked = (themeName === 'dark');
             }
         }
 
         /**
-         * Obsługuje zmianę języka.
-         * @param {Event} e - Zdarzenie 'change' z selektora.
+         * Handles language change.
+         * @param {Event} e - The 'change' event from the selector.
          */
         function handleLanguageChange(e) {
             const newLang = e.target.value;
             applyLanguage(newLang);
             saveSetting('language', newLang);
+            // NOTE: This will require a page reload or a full i18n library to translate existing text.
+            // For this demo, it just sets the preference.
+            alert("Language change requires a page reload to see all effects.");
         }
 
         /**
-         * Aplikuje wybrany język (logika i18n do rozbudowy).
-         * @param {string} langCode - Kod języka ('pl' lub 'en').
+         * Applies the selected language (i18n logic to be expanded).
+         * @param {string} langCode - Language code ('pl' or 'en').
          */
         function applyLanguage(langCode) {
             AppState.DOM.root.setAttribute('lang', langCode);
             AppState.settings.language = langCode;
-            console.log(`Język zmieniony na: ${langCode}. (Wymagana pełna implementacja i18n)`);
-            // Tutaj należałoby zaimplementować podmianę wszystkich tekstów na stronie
-            // np. na podstawie obiektu JSON z tłumaczeniami.
+            console.log(`Language changed to: ${langCode}. (Full i18n implementation needed)`);
+            // This is where you would implement swapping all text on the page
+            // e.g., based on a JSON object with translations.
         }
 
         /**
-         * Obsługuje zmianę ustawień gry (suwaki, kolory).
-         * Używa .setProperty do dynamicznej zmiany zmiennych CSS.
-         * @param {Event} e - Zdarzenie 'input' z suwaka lub wyboru koloru.
+         * Handles game setting changes (sliders, colors).
+         * Uses .setProperty to dynamically change CSS variables.
+         * @param {Event} e - The 'input' event from the slider or color picker.
          */
         function handleGameSettingChange(e) {
             const D = AppState.DOM;
             const element = e.target;
-            const cssVar = element.dataset.cssVar; // np. '--target-size'
+            const cssVar = element.dataset.cssVar; // e.g., '--target-size'
             let value = element.value;
 
             if (!cssVar) return;
 
-            // Jeśli to suwak, dodaj 'px' i zaktualizuj etykietę
+            // If it's a slider, add 'px' and update the label
             if (element.type === 'range') {
                 const unit = 'px';
                 value = `${value}${unit}`;
                 
-                // Aktualizacja etykiety (np. "Rozmiar Celu: 50px")
+                // Update label (e.g., "Target Size: 50px")
                 if (cssVar === '--target-size' && D.targetSizeValue) {
                     D.targetSizeValue.textContent = element.value;
                 }
             }
             
-            // Dynamiczna zmiana zmiennej CSS 
+            // Dynamically change the CSS variable
             D.root.style.setProperty(cssVar, value);
             
-            // Zapisz w obiekcie ustawień
+            // Save to the settings object
             AppState.settings.gameSettings[cssVar] = element.value;
             saveSetting('gameSettings', AppState.settings.gameSettings);
         }
 
         /**
-         * Aplikuje zapisane ustawienia gry (np. rozmiar celu) podczas ładowania.
+         * Applies saved game settings (e.g., target size) on load.
          */
         function applySavedGameSettings() {
             const D = AppState.DOM;
@@ -1327,19 +1317,19 @@
                 const value = settings[cssVar];
                 let valueWithUnit = value;
                 
-                // Aktualizacja suwaka i etykiety
+                // Update slider and label
                 if (cssVar === '--target-size' && D.targetSizeSlider) {
                     D.targetSizeSlider.value = value;
                     D.targetSizeValue.textContent = value;
                     valueWithUnit = `${value}px`;
                 }
                 
-                // Aktualizacja wyboru koloru
+                // Update color picker
                 if (cssVar === '--target-color' && D.targetColorPicker) {
                     D.targetColorPicker.value = value;
                 }
                 
-                // Zastosuj zmienną CSS
+                // Apply the CSS variable
                 D.root.style.setProperty(cssVar, valueWithUnit);
             }
         }
@@ -1347,14 +1337,12 @@
 
         /*
         =======================================================================
-         3. Moduł 3: Zarządzanie Interfejsem (Nawigacja, Modale)
-            - Implementacja przełączania ekranów gier.
-            - Implementacja zgodnych z ARIA okien modalnych.
+         3. Module 3: UI Management (Navigation, Modals)
         =======================================================================
         */
 
         /**
-         * Inicjalizuje główną nawigację (przełączanie trybów gry).
+         * Initializes the main navigation (switching game modes).
          */
         function initializeNavigation() {
             const D = AppState.DOM;
@@ -1362,89 +1350,89 @@
                 const target = e.target.closest('.nav-btn');
                 if (!target) return;
                 
-                // Usunięcie aktywnej klasy ze wszystkich przycisków
+                // Remove active class from all buttons
                 D.navButtons.forEach(btn => btn.classList.remove('active'));
-                // Dodanie aktywnej klasy do klikniętego
+                // Add active class to the clicked one
                 target.classList.add('active');
                 
                 const gameMode = target.dataset.game;
                 const section = target.dataset.section;
                 
                 if (gameMode) {
-                    // Przełącz na tryb gry
+                    // Switch to game mode
                     showGameScreen(gameMode);
                 } else if (section) {
-                    // Przełącz na sekcję statyczną (Blog/FAQ)
+                    // Switch to static section (Blog/FAQ)
                     showStaticScreen(section);
                 }
             });
         }
 
         /**
-         * Pokazuje odpowiedni ekran gry i ukrywa inne.
-         * @param {string} gameMode - ID trybu gry (np. 'aimTrainer').
+         * Shows the appropriate game screen and hides others.
+         * @param {string} gameMode - ID of the game mode (e.g., 'aimTrainer').
          */
         function showGameScreen(gameMode) {
             const D = AppState.DOM;
             
-            // Zatrzymaj poprzednią grę, jeśli jakaś była aktywna
+            // Stop the previous game if one was active
             stopCurrentGame();
             
-            // Ukryj ekran powitalny i kontener statyczny
+            // Hide welcome screen and static container
             D.welcomeScreen.classList.remove('active');
             D.staticContentContainer.hidden = true;
             
-            // Wyczyść kontener gry
+            // Clear the game container
             D.gameContainer.innerHTML = '';
             D.gameContainer.hidden = false;
             
-            // Zresetuj statystyki na żywo
+            // Reset live stats
             resetLiveStats();
             
             let title, description, buttonText;
             
-            // Wygeneruj HTML dla ekranu startowego wybranej gry
+            // Generate HTML for the selected game's start screen
             switch (gameMode) {
                 case 'aimTrainer':
-                    title = 'Trener Celności';
-                    description = 'Kliknij jak najwięcej celów w ciągu 30 sekund. Liczy się szybkość i precyzja.';
+                    title = 'Aim Trainer';
+                    description = 'Click as many targets as you can in 30 seconds. Speed and precision count.';
                     buttonText = 'Start (Aim Trainer)';
                     break;
                 case 'tracking':
-                    title = 'Trening Śledzenia (Tracking)';
-                    description = 'Utrzymaj kursor na ruchomym celu tak długo, jak potrafisz. Gra trwa 30 sekund.';
+                    title = 'Tracking Practice';
+                    description = 'Keep your cursor on the moving target for as long as you can. The game lasts 30 seconds.';
                     buttonText = 'Start (Tracking)';
                     break;
                 case 'typingTest':
-                    title = 'Test Szybkiego Pisania (WPM)';
-                    description = 'Zmierz swoją szybkość pisania (Słowa Na Minutę). Przepisz podany tekst tak szybko i dokładnie, jak potrafisz. Test trwa 60 sekund.';
-                    buttonText = 'Rozpocznij Test Pisania';
+                    title = 'Typing Speed Test (WPM)';
+                    description = 'Measure your typing speed (Words Per Minute). Retype the given text as quickly and accurately as you can. The test lasts 60 seconds.';
+                    buttonText = 'Start Typing Test';
                     break;
                 case 'memoryGame':
-                    title = 'Gra Pamięciowa';
-                    description = 'Odszukaj wszystkie pasujące do siebie pary kart. Postaraj się zrobić to w jak najmniejszej liczbie ruchów.';
+                    title = 'Memory Game';
+                    description = 'Find all matching pairs of cards. Try to do it in the fewest moves.';
                     buttonText = 'Start (Memory)';
                     break;
                 case 'whacAMole':
                     title = 'Whac-a-Mole';
-                    description = 'Uderzaj pojawiające się krety! Gra trwa 30 sekund. Uważaj na pomyłki!';
+                    description = 'Hit the appearing moles! The game lasts 30 seconds. Watch out for misses!';
                     buttonText = 'Start (Whac-a-Mole)';
                     break;
                 default:
                     return;
             }
             
-            // Specjalna obsługa dla gier, które nie mają ekranu "Start" (jak memory lub typing)
+            // Special handling for games that don't have a "Start" screen (like memory or typing)
             if (gameMode === 'typingTest') {
-                startTypingTest(); // Ta gra buduje swój własny interfejs od razu
+                startTypingTest(); // This game builds its own UI immediately
                 return;
             }
             if (gameMode === 'memoryGame') {
-                startMemoryGame(); // Ta gra też startuje od razu
+                startMemoryGame(); // This game also starts immediately
                 return;
             }
 
-            // Stwórz ekran startowy dla wybranej gry
+            // Create the start screen for the selected game
             const gameStartScreen = `
                 <div class="game-start-screen" id="start-screen-${gameMode}">
                     <h2 class="game-title">${title}</h2>
@@ -1456,52 +1444,52 @@
             `;
             D.gameContainer.innerHTML = gameStartScreen;
             
-            // Znajdź nowo utworzony przycisk startu i dodaj listener
+            // Find the newly created start button and add a listener
             const startGameBtn = document.getElementById('start-game-btn');
             startGameBtn.addEventListener('click', handleGameStartClick);
         }
 
         /**
-         * Pokazuje ekran treści statycznej (Blog/FAQ).
-         * @param {string} sectionName - Nazwa sekcji ('blog' lub 'faq').
+         * Shows the static content screen (Blog/FAQ).
+         * @param {string} sectionName - Name of the section ('blog' or 'faq').
          */
         function showStaticScreen(sectionName) {
             const D = AppState.DOM;
             
-            // Zatrzymaj aktywną grę
+            // Stop any active game
             stopCurrentGame();
             
-            // Ukryj ekran powitalny i kontener gry
+            // Hide welcome screen and game container
             D.welcomeScreen.classList.remove('active');
             D.gameContainer.hidden = true;
             
-            // Pokaż kontener statyczny
+            // Show static container
             D.staticContentContainer.hidden = false;
             
-            // Załaduj odpowiednią treść (placeholder)
+            // Load the appropriate content (placeholder)
             if (sectionName === 'blog') {
-                D.staticContentContainer.innerHTML = `<h2>Blog / Poradniki</h2><p>Treść bloga pojawi się tutaj...</p>`;
+                D.staticContentContainer.innerHTML = `<h2>Blog / Guides</h2><p>Blog content will appear here...</p>`;
             } else if (sectionName === 'faq') {
-                D.staticContentContainer.innerHTML = `<h2>FAQ - Najczęściej Zadawane Pytania</h2><p>Treść FAQ pojawi się tutaj...</p>`;
+                D.staticContentContainer.innerHTML = `<h2>FAQ - Frequently Asked Questions</h2><p>FAQ content will appear here...</p>`;
             }
         }
 
         /**
-         * Inicjalizuje obsługę wszystkich okien modalnych.
+         * Initializes handling for all modal windows.
          */
         function initializeModals() {
             const D = AppState.DOM;
             
-            // Zamykanie Modala Statystyk
+            // Closing the Stats Modal
             D.statsModalCloseBtns.forEach(btn => {
                 btn.addEventListener('click', () => closeModal('stats-modal'));
             });
-            // Zamykanie Modala Reklamy
+            // Closing the Ad Modal
             D.adNotificationModalCloseBtns.forEach(btn => {
                 btn.addEventListener('click', () => closeModal('ad-notification-modal'));
             });
             
-            // Zamykanie modala klawiszem Escape (dla dostępności) [16]
+            // Close modal with Escape key (for accessibility)
             window.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     if (D.statsModal.open) {
@@ -1513,7 +1501,7 @@
                 }
             });
             
-            // Zamykanie modala po kliknięciu na tło (backdrop) 
+            // Close modal by clicking on the backdrop
             D.statsModal.addEventListener('click', (e) => {
                 if (e.target.id === 'stats-modal') closeModal('stats-modal');
             });
@@ -1523,18 +1511,18 @@
         }
 
         /**
-         * Otwiera określone okno modalne (dialog).
-         * Używa .showModal() dla natywnej obsługi modala.
-         * Zarządza fokusem dla dostępności.
-         * @param {string} modalId - ID modala do otwarcia.
+         * Opens a specific modal (dialog).
+         * Uses .showModal() for native modal handling.
+         * Manages focus for accessibility.
+         * @param {string} modalId - ID of the modal to open.
          */
         function openModal(modalId) {
             const modal = document.getElementById(modalId);
             if (!modal) return;
             
-            modal.showModal(); // [14]
+            modal.showModal();
             
-            // Przeniesienie fokusu na modal (lub pierwszy element w nim) dla WAI-ARIA [16]
+            // Move focus to the modal (or first focusable element) for WAI-ARIA
             const firstFocusableElement = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
             if (firstFocusableElement) {
                 firstFocusableElement.focus();
@@ -1542,54 +1530,50 @@
         }
 
         /**
-         * Zamyka określone okno modalne.
-         * Używa .close().
-         * @param {string} modalId - ID modala do zamknięcia.
+         * Closes a specific modal.
+         * Uses .close().
+         * @param {string} modalId - ID of the modal to close.
          */
         function closeModal(modalId) {
             const modal = document.getElementById(modalId);
             if (modal) {
                 modal.close();
             }
-            // Przywracanie fokusu do elementu, który otworzył modal,
-            // powinno być zaimplementowane, jeśli przechowujemy referencję do 'triggera' [16]
         }
 
         /*
         =======================================================================
-         4. Moduł 4: Zarządzanie Danymi (LocalStorage, Wyniki)
-            - Implementacja zapisu i odczytu jako pojedynczy obiekt JSON.
-            - Zarządzanie najlepszymi wynikami.[32, 33]
+         4. Module 4: Data Management (LocalStorage, Scores)
         =======================================================================
         */
 
-        // Klucz główny dla localStorage
+        // Primary key for localStorage
         const LOCAL_STORAGE_KEY_SETTINGS = 'reflexCoreSettings';
         const LOCAL_STORAGE_KEY_SCORES = 'reflexCoreHighScores';
 
         /**
-         * Zapisuje pojedyncze ustawienie lub całą grupę w localStorage.
-         * @param {string} key - Klucz główny (np. 'theme' lub 'gameSettings').
-         * @param {*} value - Wartość do zapisania.
+         * Saves a single setting or an entire group to localStorage.
+         * @param {string} key - The main key (e.g., 'theme' or 'gameSettings').
+         * @param {*} value - The value to save.
          */
         function saveSetting(key, value) {
             AppState.settings[key] = value;
-            // Zapisujemy cały obiekt ustawień jako JSON 
+            // Save the entire settings object as JSON
             localStorage.setItem(LOCAL_STORAGE_KEY_SETTINGS, JSON.stringify(AppState.settings));
         }
 
         /**
-         * Wczytuje ustawienia z localStorage podczas inicjalizacji.
+         * Loads settings from localStorage during initialization.
          */
         function loadSettings() {
-            // Używamy "try...catch" na wypadek, gdyby localStorage było wyłączone lub dane były uszkodzone
+            // Use "try...catch" in case localStorage is disabled or data is corrupted
             try {
                 const savedSettings = localStorage.getItem(LOCAL_STORAGE_KEY_SETTINGS);
                 
                 if (savedSettings) {
                     const parsedSettings = JSON.parse(savedSettings);
-                    // Łączymy zapisane ustawienia z domyślnymi, aby uniknąć błędów
-                    // Używamy głębokiego łączenia dla gameSettings
+                    // Merge saved settings with defaults to avoid errors
+                    // Use a deep merge for gameSettings
                     AppState.settings = {
                         ...AppState.settings,
                         ...parsedSettings,
@@ -1600,35 +1584,35 @@
                     };
                 }
             } catch (error) {
-                console.error("Nie udało się załadować ustawień z localStorage:", error);
+                console.error("Failed to load settings from localStorage:", error);
             }
             
-            // Zastosuj wczytane (lub domyślne) ustawienia
+            // Apply loaded (or default) settings
             applyTheme(AppState.settings.theme);
             applyLanguage(AppState.settings.language);
             applySavedGameSettings();
         }
 
         /**
-         * Zapisuje najlepsze wyniki w localStorage.
-         * @param {string} gameMode - ID trybu gry.
-         * @param {object} scoreData - Obiekt z wynikiem (np. { score: 100, reaction: 150 }).
+         * Saves high scores to localStorage.
+         * @param {string} gameMode - ID of the game mode.
+         * @param {object} scoreData - Object with the score (e.g., { score: 100, reaction: 150 }).
          */
         function saveHighScore(gameMode, scoreData) {
-            // Zapisujemy cały obiekt wyników [32, 34]
+            // Save the entire scores object
             AppState.highScores[gameMode] = scoreData;
             try {
                 localStorage.setItem(LOCAL_STORAGE_KEY_SCORES, JSON.stringify(AppState.highScores));
             } catch (error) {
-                console.error("Nie udało się zapisać wyników w localStorage:", error);
+                console.error("Failed to save high scores to localStorage:", error);
             }
             
-            // Odśwież wyświetlanie wyników na ekranie głównym
+            // Refresh the high scores display on the main screen
             updateHighScoresDisplay();
         }
 
         /**
-         * Wczytuje najlepsze wyniki z localStorage.
+         * Loads high scores from localStorage.
          */
         function loadHighScores() {
             try {
@@ -1637,15 +1621,15 @@
                     AppState.highScores = JSON.parse(savedScores);
                 }
             } catch (error) {
-                console.error("Nie udało się załadować wyników z localStorage:", error);
+                console.error("Failed to load high scores from localStorage:", error);
             }
             
-            // Odśwież wyświetlanie
+            // Refresh display
             updateHighScoresDisplay();
         }
 
         /**
-         * Aktualizuje sekcję "Najlepsze Wyniki" na ekranie powitalnym.
+         * Updates the "High Scores" section on the welcome screen.
          */
         function updateHighScoresDisplay() {
             const D = AppState.DOM;
@@ -1655,23 +1639,23 @@
             let html = '';
             
             if (Object.keys(scores).length === 0) {
-                html = '<p>Brak zapisanych wyników. Zagraj w grę, aby ustanowić rekord!</p>';
+                html = '<p>No saved scores. Play a game to set a record!</p>';
             } else {
                 html = '<ul>';
                 if (scores.aimTrainer) {
-                    html += `<li><strong>Trener Celności:</strong> ${scores.aimTrainer.score} pkt (Avg: ${scores.aimTrainer.reaction}ms)</li>`;
+                    html += `<li><strong>Aim Trainer:</strong> ${scores.aimTrainer.score} pts (Avg: ${scores.aimTrainer.reaction}ms)</li>`;
                 }
                 if (scores.tracking) {
-                    html += `<li><strong>Śledzenie:</strong> ${scores.tracking.score.toFixed(2)}% celności</li>`;
+                    html += `<li><strong>Tracking:</strong> ${scores.tracking.score.toFixed(2)}% accuracy</li>`;
                 }
                 if (scores.typingTest) {
-                    html += `<li><strong>Test Pisania:</strong> ${scores.typingTest.wpm} WPM (Celność: ${scores.typingTest.accuracy}%)</li>`;
+                    html += `<li><strong>Typing Test:</strong> ${scores.typingTest.wpm} WPM (Accuracy: ${scores.typingTest.accuracy}%)</li>`;
                 }
                 if (scores.memoryGame) {
-                    html += `<li><strong>Gra Pamięciowa:</strong> ${scores.memoryGame.moves} ruchów</li>`;
+                    html += `<li><strong>Memory Game:</strong> ${scores.memoryGame.moves} moves</li>`;
                 }
                 if (scores.whacAMole) {
-                    html += `<li><strong>Whac-a-Mole:</strong> ${scores.whacAMole.score} pkt</li>`;
+                    html += `<li><strong>Whac-a-Mole:</strong> ${scores.whacAMole.score} pts</li>`;
                 }
                 html += '</ul>';
             }
@@ -1680,38 +1664,35 @@
         }
 
         /**
-         * Obsługuje resetowanie najlepszych wyników.
+         * Handles resetting high scores.
          */
         function handleResetHighScores() {
-            if (confirm('Czy na pewno chcesz zresetować wszystkie swoje najlepsze wyniki? Tej operacji nie można cofnąć.')) {
+            if (confirm('Are you sure you want to reset all your high scores? This action cannot be undone.')) {
                 AppState.highScores = {};
                 try {
                     localStorage.removeItem(LOCAL_STORAGE_KEY_SCORES);
                 } catch (error) {
-                    console.error("Błąd podczas resetowania wyników:", error);
+                    console.error("Error while resetting scores:", error);
                 }
                 updateHighScoresDisplay();
-                console.log("Najlepsze wyniki zostały zresetowane.");
+                console.log("High scores have been reset.");
             }
         }
 
 
         /*
         =======================================================================
-         5. Moduł 5: Tryb Gry - Trener Celności (Aim Trainer)
-            - Pełna logika gry: klikanie celów.
-            - Obliczanie średniego czasu reakcji.[35, 36]
-            - Obliczanie CPS (Clicks Per Second).[37, 38]
+         5. Module 5: Game Mode - Aim Trainer
         =======================================================================
         */
 
-        // Ustawienia specyficzne dla gry Aim Trainer
+        // Settings specific to Aim Trainer
         const AimTrainerSettings = {
-            GAME_DURATION: 30000 // 30 sekund
+            GAME_DURATION: 30000 // 30 seconds
         };
 
         /**
-         * Rozpoczyna grę w trybie Aim Trainer.
+         * Starts the Aim Trainer game.
          */
         function startAimTrainer() {
             const D = AppState.DOM;
@@ -1719,11 +1700,11 @@
             
             C.gameMode = 'aimTrainer';
             
-            // Przygotowanie kontenera gry
+            // Prepare the game container
             D.gameContainer.innerHTML = '<div class="game-area" id="aim-trainer-area"></div>';
             D.gameArea = document.getElementById('aim-trainer-area');
             
-            // Resetowanie statystyk
+            // Reset stats
             C.isActive = true;
             C.hits = 0;
             C.misses = 0;
@@ -1731,25 +1712,25 @@
             C.lastReactionTime = Date.now();
             resetLiveStats();
             
-            // Obsługa kliknięć (trafienia/pudła)
+            // Handle clicks (hits/misses)
             D.gameArea.addEventListener('mousedown', handleAimTrainerClick);
             
-            // Start pomiaru CPS [39]
+            // Start CPS measurement
             startCPSMeasure();
             
-            // Start timera gry
+            // Start game timer
             C.startTime = Date.now();
             C.timerInterval = setInterval(updateGameTimer, 100);
             
-            // Ustawienie timera kończącego grę
+            // Set the timer to end the game
             setTimeout(stopAimTrainer, AimTrainerSettings.GAME_DURATION);
             
-            // Stworzenie pierwszego celu
+            // Create the first target
             spawnTarget();
         }
 
         /**
-         * Zatrzymuje grę w trybie Aim Trainer.
+         * Stops the Aim Trainer game.
          */
         function stopAimTrainer() {
             const C = AppState.currentGame;
@@ -1760,23 +1741,23 @@
             clearInterval(C.timerInterval);
             stopCPSMeasure();
             
-            // Usunięcie listenera, aby uniknąć kliknięć po zakończeniu
+            // Remove listener to avoid clicks after finishing
             if (AppState.DOM.gameArea) {
                 AppState.DOM.gameArea.removeEventListener('mousedown', handleAimTrainerClick);
             }
             
-            // Usunięcie ostatniego celu
+            // Remove the last target
             const target = AppState.DOM.gameArea.querySelector('.target');
             if (target) {
                 target.remove();
             }
             
-            // Obliczenie finałowych statystyk
+            // Calculate final stats
             showFinalStats('aimTrainer');
         }
 
         /**
-         * Tworzy i wyświetla nowy cel w losowym miejscu.
+         * Creates and displays a new target in a random location.
          */
         function spawnTarget() {
             const C = AppState.currentGame;
@@ -1784,9 +1765,9 @@
             
             const D = AppState.DOM;
             const gameArea = D.gameArea;
-            if (!gameArea) return; // Zabezpieczenie, jeśli gra skończyła się w międzyczasie
+            if (!gameArea) return; // Safety check if game ended in the meantime
 
-            // Usunięcie poprzedniego celu, jeśli istnieje
+            // Remove the previous target, if it exists
             const oldTarget = gameArea.querySelector('.target');
             if (oldTarget) {
                 oldTarget.remove();
@@ -1795,10 +1776,10 @@
             const target = document.createElement('div');
             target.className = 'target';
             
-            // Pobranie dynamicznego rozmiaru ze zmiennej CSS (ustawianej w panelu)
+            // Get the dynamic size from the CSS variable (set in the panel)
             const targetSize = parseInt(D.root.style.getPropertyValue('--target-size') || AppState.settings.gameSettings['--target-size']);
             
-            // Obliczenie losowej pozycji
+            // Calculate random position
             const maxWidth = gameArea.clientWidth - targetSize;
             const maxHeight = gameArea.clientHeight - targetSize;
             
@@ -1808,50 +1789,50 @@
             target.style.left = `${x}px`;
             target.style.top = `${y}px`;
             
-            // Listener dla trafienia
+            // Listener for hits
             target.addEventListener('mousedown', handleTargetHit);
             
             gameArea.appendChild(target);
             
-            // Zapisz czas pojawienia się celu do obliczenia czasu reakcji
+            // Save the time the target appeared to calculate reaction time
             C.lastReactionTime = Date.now();
         }
 
         /**
-         * Obsługuje kliknięcie w obszarze gry (trafienie lub pudło).
-         * @param {Event} e - Zdarzenie 'mousedown'.
+         * Handles a click in the game area (hit or miss).
+         * @param {Event} e - The 'mousedown' event.
          */
         function handleAimTrainerClick(e) {
-            // Sprawdź, czy kliknięto bezpośrednio na obszar gry (pudło)
+            // Check if the click was directly on the game area (a miss)
             if (e.target.id === 'aim-trainer-area') {
                 handleTargetMiss();
             }
         }
 
         /**
-         * Obsługuje trafienie w cel.
-         * @param {Event} e - Zdarzenie 'mousedown' na celu.
+         * Handles hitting a target.
+         * @param {Event} e - The 'mousedown' event on the target.
          */
         function handleTargetHit(e) {
             const C = AppState.currentGame;
             if (!C.isActive) return;
             
-            // Zapobiegaj propagacji zdarzenia do gameArea (aby nie zliczyło pudła)
+            // Prevent event propagation to gameArea (to not count a miss)
             e.stopPropagation();
             
-            // Oblicz czas reakcji [35]
+            // Calculate reaction time
             const reactionTime = Date.now() - C.lastReactionTime;
             C.reactionTimes.push(reactionTime);
             
             C.hits++;
             updateLiveStats();
             
-            // Natychmiastowe stworzenie nowego celu
+            // Immediately create a new target
             spawnTarget();
         }
 
         /**
-         * Obsługuje pudło (kliknięcie obok celu).
+         * Handles a miss (clicking next to the target).
          */
         function handleTargetMiss() {
             const C = AppState.currentGame;
@@ -1859,13 +1840,11 @@
             
             C.misses++;
             updateLiveStats();
-            
-            // Opcjonalnie: można dodać efekt wizualny/dźwiękowy dla pudła
         }
 
         /**
-         * Oblicza średni czas reakcji z tablicy.[35, 36]
-         * @returns {number} - Średni czas reakcji w ms.
+         * Calculates the average reaction time from the array.
+         * @returns {number} - Average reaction time in ms.
          */
         function calculateAverageReactionTime() {
             const C = AppState.currentGame;
@@ -1876,7 +1855,7 @@
         }
 
         /**
-         * Rozpoczyna pomiar CPS (Clicks Per Second).
+         * Starts measuring CPS (Clicks Per Second).
          */
         function startCPSMeasure() {
             const C = AppState.currentGame;
@@ -1887,22 +1866,21 @@
             CPS.isMeasuring = true;
             CPS.clicks = 0;
             
-            // Listener do zliczania wszystkich kliknięć
+            // Listener to count all clicks
             if(AppState.DOM.gameArea) {
                 AppState.DOM.gameArea.addEventListener('mousedown', countClickForCPS);
             }
             
-            // Timer do resetowania licznika CPS co sekundę (dla statystyk na żywo)
-            // To jest jedna z metod pomiaru CPS [39]
+            // Timer to reset the CPS counter every second (for live stats)
             CPS.timer = setInterval(() => {
-                // Aktualizacja CPS na żywo (jeśli mamy taki stat w sidebarze)
+                // Update live CPS (if we have such a stat in the sidebar)
                 // console.log(`CPS: ${CPS.clicks}`);
-                CPS.clicks = 0; // Resetuj co sekundę
+                CPS.clicks = 0; // Reset every second
             }, 1000);
         }
 
         /**
-         * Zlicza kliknięcie dla pomiaru CPS.
+         * Counts a click for CPS measurement.
          */
         function countClickForCPS() {
             if (AppState.currentGame.cpsCounter.isMeasuring) {
@@ -1911,7 +1889,7 @@
         }
 
         /**
-         * Zatrzymuje pomiar CPS.
+         * Stops CPS measurement.
          */
         function stopCPSMeasure() {
             const C = AppState.currentGame;
@@ -1927,8 +1905,8 @@
         }
 
         /**
-         * Oblicza finałowy, średni CPS dla całej sesji.[38]
-         * @returns {number} - Średni CPS.
+         * Calculates the final, average CPS for the entire session.
+         * @returns {number} - Average CPS.
          */
         function calculateFinalCPS() {
             const C = AppState.currentGame;
@@ -1943,20 +1921,18 @@
 
         /*
         =======================================================================
-         6. Moduł 6: Tryb Gry - Śledzenie (Tracking)
-            - Implementacja na podstawie tutoriali.[31, 24]
-            - Logika ruchomego celu i obliczanie celności na podstawie czasu.
+         6. Module 6: Game Mode - Tracking
         =======================================================================
         */
 
-        // Ustawienia specyficzne dla gry Tracking
+        // Settings specific to Tracking
         const TrackingSettings = {
-            GAME_DURATION: 30000, // 30 sekund
-            TARGET_SPEED: 3,      // piksele na klatkę
+            GAME_DURATION: 30000, // 30 seconds
+            TARGET_SPEED: 3,      // pixels per frame
             UPDATE_RATE: 1000 / 60 // 60 FPS
         };
 
-        // Stan specyficzny dla gry Tracking
+        // State specific to Tracking
         const TrackingState = {
             targetEl: null,
             targetPos: { x: 50, y: 50 },
@@ -1968,7 +1944,7 @@
         };
 
         /**
-         * Rozpoczyna grę w trybie Tracking.
+         * Starts the Tracking game.
          */
         function startTrackingGame() {
             const D = AppState.DOM;
@@ -1976,31 +1952,31 @@
             
             C.gameMode = 'tracking';
             
-            // Przygotowanie kontenera gry
+            // Prepare game container
             D.gameContainer.innerHTML = '<div class="game-area" id="tracking-area"></div>';
             D.gameArea = document.getElementById('tracking-area');
             
-            // Stworzenie celu
+            // Create the target
             const target = document.createElement('div');
             target.className = 'target';
             D.gameArea.appendChild(target);
             TrackingState.targetEl = target;
             
-            // Resetowanie statystyk
+            // Reset stats
             C.isActive = true;
-            C.hits = 0; // W tej grze "hits" to czas na celu
-            C.misses = 0; // "misses" to czas poza celem
+            C.hits = 0; // In this game, "hits" is time on target
+            C.misses = 0; // "misses" is time off target
             TrackingState.timeOnTarget = 0;
             TrackingState.totalTime = 0;
             TrackingState.isMouseOverTarget = false;
             
-            // Resetowanie pozycji celu
+            // Reset target position
             TrackingState.targetPos = { x: 50, y: 50 };
             TrackingState.targetVel = { x: TrackingSettings.TARGET_SPEED, y: TrackingSettings.TARGET_SPEED };
             
             resetLiveStats();
             
-            // Listenery do śledzenia myszy na celu
+            // Listeners for tracking the mouse on the target
             TrackingState.targetEl.addEventListener('mouseenter', () => {
                 TrackingState.isMouseOverTarget = true;
             });
@@ -2008,19 +1984,19 @@
                 TrackingState.isMouseOverTarget = false;
             });
             
-            // Start timera gry
+            // Start game timer
             C.startTime = Date.now();
             C.timerInterval = setInterval(updateGameTimer, 100);
             
-            // Start głównej pętli gry (animacja celu)
+            // Start the main game loop (target animation)
             TrackingState.gameLoop = setInterval(updateTrackingGame, TrackingSettings.UPDATE_RATE);
             
-            // Ustawienie timera kończącego grę
+            // Set timer to end the game
             setTimeout(stopTrackingGame, TrackingSettings.GAME_DURATION);
         }
 
         /**
-         * Zatrzymuje grę w trybie Tracking.
+         * Stops the Tracking game.
          */
         function stopTrackingGame() {
             const C = AppState.currentGame;
@@ -2031,18 +2007,18 @@
             clearInterval(C.timerInterval);
             clearInterval(TrackingState.gameLoop);
             
-            // Usunięcie celu
+            // Remove the target
             if (TrackingState.targetEl) {
                 TrackingState.targetEl.remove();
                 TrackingState.targetEl = null;
             }
             
-            // Obliczenie finałowych statystyk
+            // Calculate final stats
             showFinalStats('tracking');
         }
 
         /**
-         * Główna pętla gry Tracking (aktualizowana 60 razy na sekundę).
+         * Main Tracking game loop (updated 60 times per second).
          */
         function updateTrackingGame() {
             const C = AppState.currentGame;
@@ -2059,61 +2035,59 @@
             const areaWidth = gameArea.clientWidth;
             const areaHeight = gameArea.clientHeight;
 
-            // Aktualizacja pozycji celu
+            // Update target position
             S.targetPos.x += S.targetVel.x;
             S.targetPos.y += S.targetVel.y;
 
-            // Odbijanie od ścianek
+            // Bounce off walls
             if (S.targetPos.x <= 0 || S.targetPos.x >= areaWidth - targetSize) {
-                S.targetVel.x *= -1; // Zmień kierunek X
+                S.targetVel.x *= -1; // Change X direction
             }
             if (S.targetPos.y <= 0 || S.targetPos.y >= areaHeight - targetSize) {
-                S.targetVel.y *= -1; // Zmień kierunek Y
+                S.targetVel.y *= -1; // Change Y direction
             }
             
-            // Zapewnienie, że cel pozostaje w granicach
+            // Ensure the target stays within bounds
             S.targetPos.x = Math.max(0, Math.min(S.targetPos.x, areaWidth - targetSize));
             S.targetPos.y = Math.max(0, Math.min(S.targetPos.y, areaHeight - targetSize));
 
-            // Zastosowanie nowej pozycji
+            // Apply new position
             target.style.left = `${S.targetPos.x}px`;
             target.style.top = `${S.targetPos.y}px`;
             
-            // Zliczanie czasu na celu
+            // Count time on target
             S.totalTime += TrackingSettings.UPDATE_RATE;
             if (S.isMouseOverTarget) {
                 S.timeOnTarget += TrackingSettings.UPDATE_RATE;
-                C.hits = S.timeOnTarget; // Używamy 'hits' do przechowywania czasu na celu
+                C.hits = S.timeOnTarget; // Use 'hits' to store time on target
             } else {
-                C.misses = S.totalTime - S.timeOnTarget; // 'misses' to czas poza celem
+                C.misses = S.totalTime - S.timeOnTarget; // 'misses' is time off target
             }
             
-            // Aktualizacja statystyk na żywo
+            // Update live stats
             updateLiveStats();
         }
 
 
         /*
         =======================================================================
-         7. Moduł 7: Tryb Gry - Test Szybkiego Pisania (Typing Test)
-            - Implementacja na podstawie tutoriali.[25, 26, 40]
-            - Ładowanie tekstu, obsługa klawiszy, obliczanie WPM i celności.
+         7. Module 7: Game Mode - Typing Test
         =======================================================================
         */
 
-        // Ustawienia specyficzne dla gry Typing Test
+        // Settings specific to Typing Test
         const TypingTestSettings = {
-            GAME_DURATION: 60000, // 60 sekund
-            // Przykładowe teksty do pisania (można je ładować z API)
+            GAME_DURATION: 60000, // 60 seconds
+            // Sample texts (can be loaded from an API)
             TEXT_SAMPLES: [
-                "Szybki brązowy lis przeskakuje nad leniwym psem. To zdanie zawiera wszystkie litery alfabetu i jest często używane do testowania czcionek oraz klawiatur.",
-                "Programowanie to sztuka i nauka tworzenia instrukcji dla komputera. Wymaga logiki, kreatywności i cierpliwości. Każdy może się tego nauczyć.",
-                "ReflexCore pomaga poprawić czas reakcji. Regularny trening celności jest kluczowy dla graczy komputerowych. Ćwicz codziennie, aby zobaczyć najlepsze rezultaty.",
-                "Morze Bałtyckie jest stosunkowo młodym i płytkim morzem śródlądowym. Jego zasolenie jest znacznie niższe niż w przypadku większości innych mórz."
+                "The quick brown fox jumps over the lazy dog. This sentence contains all letters of the alphabet and is often used to test fonts and keyboards.",
+                "Programming is the art and science of creating instructions for a computer. It requires logic, creativity, and patience. Anyone can learn it.",
+                "ReflexCore helps improve reaction time. Regular aim training is crucial for gamers. Practice daily to see the best results.",
+                "The Baltic Sea is a relatively young and shallow inland sea. Its salinity is much lower than in most other seas."
             ]
         };
 
-        // Stan specyficzny dla gry Typing Test
+        // State specific to Typing Test
         const TypingState = {
             textToType: "",
             currentIndex: 0,
@@ -2125,7 +2099,7 @@
         };
 
         /**
-         * Rozpoczyna grę w trybie Typing Test.
+         * Starts the Typing Test game.
          */
         function startTypingTest() {
             const D = AppState.DOM;
@@ -2133,12 +2107,12 @@
             
             C.gameMode = 'typingTest';
             
-            // Wygeneruj interfejs gry
+            // Generate game UI
             D.gameContainer.innerHTML = `
                 <div class="typing-test-container">
                     <div class="typing-stats">
                         <div class="typing-stat-item">
-                            <div class="typing-stat-label">Czas</div>
+                            <div class="typing-stat-label">Time</div>
                             <div class="typing-stat-value" id="typing-timer">60</div>
                         </div>
                         <div class="typing-stat-item">
@@ -2146,57 +2120,57 @@
                             <div class="typing-stat-value" id="typing-wpm">0</div>
                         </div>
                         <div class="typing-stat-item">
-                            <div class="typing-stat-label">Błędy</div>
+                            <div class="typing-stat-label">Errors</div>
                             <div class="typing-stat-value" id="typing-errors">0</div>
                         </div>
                         <div class="typing-stat-item">
-                            <div class="typing-stat-label">Celność</div>
+                            <div class="typing-stat-label">Accuracy</div>
                             <div class="typing-stat-value" id="typing-accuracy">100%</div>
                         </div>
                     </div>
                     <div class="typing-text-display" id="typing-text-display"></div>
                     <input type="text" class="typing-input-area" id="typing-input-area" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" autofocus>
-                    <button class="btn btn-primary typing-restart-btn" id="typing-restart-btn" hidden>Spróbuj Ponownie</button>
+                    <button class="btn btn-primary typing-restart-btn" id="typing-restart-btn" hidden>Try Again</button>
                 </div>
             `;
             
-            // Zapisz referencje do nowych elementów DOM
+            // Save references to new DOM elements
             TypingState.inputElement = document.getElementById('typing-input-area');
             TypingState.textDisplayElement = document.getElementById('typing-text-display');
             const timerDisplay = document.getElementById('typing-timer');
             const restartBtn = document.getElementById('typing-restart-btn');
             
-            // Zresetuj statystyki
+            // Reset stats
             C.isActive = true;
-            C.hits = 0; // Użyjemy hits dla WPM
-            C.misses = 0; // Użyjemy misses dla błędów
+            C.hits = 0; // We'll use hits for WPM
+            C.misses = 0; // We'll use misses for errors
             TypingState.currentIndex = 0;
             TypingState.errors = 0;
             TypingState.totalTyped = 0;
-            TypingState.startTime = 0; // Zostanie ustawione przy pierwszym znaku
+            TypingState.startTime = 0; // Will be set on first keypress
             
-            // Załaduj i wyświetl tekst
+            // Load and display text
             loadTypingText();
             
-            // Dodaj listenery
+            // Add listeners
             TypingState.inputElement.addEventListener('input', handleTypingInput);
-            TypingState.inputElement.addEventListener('keydown', handleTypingBackspace); // Do obsługi backspace
+            TypingState.inputElement.addEventListener('keydown', handleTypingBackspace); // For backspace handling
             restartBtn.addEventListener('click', () => showGameScreen('typingTest')); // Restart
             
-            // Ustaw fokus na polu do pisania
+            // Set focus on the input field
             TypingState.inputElement.focus();
             
-            // Start timera (ale inaczej niż w Aim Trainer)
+            // Start timer (but differently than in Aim Trainer)
             let timeLeft = TypingTestSettings.GAME_DURATION / 1000;
             timerDisplay.textContent = timeLeft;
             
             C.timerInterval = setInterval(() => {
-                // Timer rusza dopiero po rozpoczęciu pisania
+                // Timer only starts after typing begins
                 if (C.isActive && TypingState.startTime > 0) {
                     timeLeft--;
                     timerDisplay.textContent = timeLeft;
                     
-                    // Aktualizuj WPM na żywo
+                    // Update WPM live
                     updateTypingStats(false);
                     
                     if (timeLeft <= 0) {
@@ -2207,7 +2181,7 @@
         }
 
         /**
-         * Zatrzymuje grę w trybie Typing Test.
+         * Stops the Typing Test game.
          */
         function stopTypingTest() {
             const C = AppState.currentGame;
@@ -2217,41 +2191,41 @@
             C.endTime = Date.now();
             clearInterval(C.timerInterval);
             
-            // Zablokuj pole do pisania
+            // Disable the input field
             TypingState.inputElement.disabled = true;
             
-            // Pokaż przycisk restartu
+            // Show the restart button
             document.getElementById('typing-restart-btn').hidden = false;
             
-            // Oblicz i pokaż finałowe statystyki
-            updateTypingStats(true); // Końcowe obliczenie
+            // Calculate and show final stats
+            updateTypingStats(true); // Final calculation
             showFinalStats('typingTest');
         }
 
         /**
-         * Ładuje nowy tekst do przepisania i renderuje go w kontenerze.
+         * Loads new text to type and renders it in the container.
          */
         function loadTypingText() {
             const S = TypingTestSettings;
             const T = TypingState;
             
-            // Wybierz losowy tekst
+            // Select a random text
             T.textToType = S.TEXT_SAMPLES[Math.floor(Math.random() * S.TEXT_SAMPLES.length)];
             
-            // Przekształć tekst na tablicę spanów (liter)
+            // Transform the text into an array of spans (letters)
             const characters = T.textToType.split('').map(char => {
                 return `<span class="char">${char}</span>`;
             }).join('');
             
             T.textDisplayElement.innerHTML = characters;
             
-            // Podświetl pierwszy znak
+            // Highlight the first character
             T.textDisplayElement.querySelector('.char').classList.add('current');
         }
 
         /**
-         * Obsługuje wprowadzanie tekstu przez użytkownika.[26]
-         * @param {Event} e - Zdarzenie 'input'.
+         * Handles text input from the user.
+         * @param {Event} e - The 'input' event.
          */
         function handleTypingInput(e) {
             const C = AppState.currentGame;
@@ -2259,18 +2233,18 @@
             
             if (!C.isActive) return;
             
-            // Uruchom timer przy pierwszym znaku
+            // Start the timer on the first keypress
             if (T.startTime === 0) {
                 T.startTime = Date.now();
             }
             
             const allChars = T.textDisplayElement.querySelectorAll('.char');
-            const typedChar = e.data; // Ostatni wpisany znak
+            const typedChar = e.data; // The last character typed
 
-            // Ignoruj, jeśli to był backspace (obsłużony w handleTypingBackspace)
+            // Ignore if it was a backspace (handled in handleTypingBackspace)
             if (typedChar === null) return; 
 
-            // Ignoruj, jeśli doszliśmy do końca
+            // Ignore if we've reached the end
             if (T.currentIndex >= T.textToType.length) return;
 
             const charToType = T.textToType[T.currentIndex];
@@ -2279,34 +2253,34 @@
             T.totalTyped++;
             
             if (typedChar === charToType) {
-                // Poprawny znak
+                // Correct character
                 currentDisplayChar.classList.add('correct');
-                C.hits++; // Użyjemy 'hits' do liczenia poprawnych znaków (do WPM)
+                C.hits++; // Use 'hits' to count correct chars (for WPM)
             } else {
-                // Niepoprawny znak
+                // Incorrect character
                 currentDisplayChar.classList.add('incorrect');
                 T.errors++;
-                C.misses = T.errors; // 'misses' dla błędów
+                C.misses = T.errors; // 'misses' for errors
             }
             
             currentDisplayChar.classList.remove('current');
             T.currentIndex++;
             
-            // Sprawdź, czy gra się nie skończyła (przepisany cały tekst)
+            // Check if the game is over (entire text typed)
             if (T.currentIndex === T.textToType.length) {
                 stopTypingTest();
                 return;
             }
             
-            // Podświetl następny znak
+            // Highlight the next character
             allChars[T.currentIndex].classList.add('current');
             
-            // Aktualizuj statystyki na żywo (ale nie WPM, to robi timer)
+            // Update live stats (but not WPM, the timer does that)
             updateTypingStats(false);
         }
 
         /**
-         * Obsługuje backspace w teście pisania
+         * Handles backspace in the typing test
          */
         function handleTypingBackspace(e) {
             const T = TypingState;
@@ -2314,21 +2288,21 @@
                 return;
             }
 
-            // Zapobiegaj domyślnej akcji (usuwaniu z inputa)
+            // Prevent default action (deleting from input)
             e.preventDefault();
 
             const allChars = T.textDisplayElement.querySelectorAll('.char');
             
-            // Usuń "current" z obecnego znaku
+            // Remove "current" from the current character
             allChars[T.currentIndex].classList.remove('current');
 
-            // Przesuń indeks
+            // Move the index
             T.currentIndex--;
 
-            // Znak, do którego wracamy
+            // The character we are returning to
             const charToCorrect = allChars[T.currentIndex];
             
-            // Sprawdź, czy był błędny
+            // Check if it was incorrect
             if (charToCorrect.classList.contains('incorrect')) {
                 T.errors--;
                 AppState.currentGame.misses = T.errors;
@@ -2337,21 +2311,21 @@
                 AppState.currentGame.hits--;
             }
 
-            // Wyczyść jego stan i ustaw jako "current"
+            // Clear its state and set it as "current"
             charToCorrect.classList.remove('correct', 'incorrect');
             charToCorrect.classList.add('current');
 
-            // Zaktualizuj pole input
+            // Update the input field
             T.inputElement.value = T.inputElement.value.slice(0, -1);
             
-            T.totalTyped--; // Zmniejszamy też ogólną liczbę wpisanych
+            T.totalTyped--; // Also reduce the total typed
             updateTypingStats(false);
         }
 
 
         /**
-         * Aktualizuje statystyki WPM, Błędy, Celność na żywo lub na koniec gry.
-         * @param {boolean} isFinal - Czy to końcowe obliczenie?
+         * Updates WPM, Errors, and Accuracy stats live or at the end of the game.
+         * @param {boolean} isFinal - Is this the final calculation?
          */
         function updateTypingStats(isFinal) {
             const C = AppState.currentGame;
@@ -2361,23 +2335,23 @@
             const accuracyDisplay = document.getElementById('typing-accuracy');
             const wpmDisplay = document.getElementById('typing-wpm');
 
-            if (!errorsDisplay) return; // Zabezpieczenie na wypadek przełączenia gry
+            if (!errorsDisplay) return; // Safety check in case the game was switched
 
-            // Aktualizuj błędy
+            // Update errors
             errorsDisplay.textContent = T.errors;
             
-            // Oblicz celność
+            // Calculate accuracy
             let accuracy = 100;
             if (T.totalTyped > 0) {
                 accuracy = Math.round(((T.totalTyped - T.errors) / T.totalTyped) * 100);
             }
             accuracyDisplay.textContent = `${accuracy}%`;
-            C.accuracy = accuracy; // Zapisz do stanu globalnego
+            C.accuracy = accuracy; // Save to global state
             
-            // Oblicz WPM (Words Per Minute) [26]
+            // Calculate WPM (Words Per Minute)
             let timeElapsedInMinutes = (Date.now() - T.startTime) / 60000;
             if (isFinal) {
-                // Użyj dokładnego czasu, jeśli gra się skończyła
+                // Use the exact time if the game ended
                 const duration = (C.endTime > 0) ? (C.endTime - T.startTime) : TypingTestSettings.GAME_DURATION;
                 timeElapsedInMinutes = duration / 60000;
             }
@@ -2387,46 +2361,44 @@
                 return;
             }
             
-            // Standardowa formuła: (liczba poprawnych słów) / minuty
-            // Słowo = średnio 5 znaków (wliczając spacje)
-            // Używamy C.hits (poprawne znaki) / 5
+            // Standard formula: (number of correct words) / minutes
+            // Word = average 5 characters (including spaces)
+            // We use C.hits (correct chars) / 5
             const netWPM = Math.round( (C.hits / 5) / timeElapsedInMinutes );
             
-            const finalWPM = Math.max(0, netWPM); // Nie pokazuj ujemnego WPM
+            const finalWPM = Math.max(0, netWPM); // Don't show negative WPM
             
             wpmDisplay.textContent = finalWPM;
             
-            // Zapisz do statystyk końcowych
-            C.hits = finalWPM; // 'hits' jako WPM
+            // Save for final stats
+            C.hits = finalWPM; // 'hits' as WPM
             C.misses = T.errors;
         }
 
 
         /*
         =======================================================================
-         8. Moduł 8: Tryb Gry - Gra Pamięciowa (Memory Game)
-            - Implementacja na podstawie tutoriali.[27, 20, 41, 42]
-            - Logika tasowania, odwracania kart i sprawdzania dopasowania.
+         8. Module 8: Game Mode - Memory Game
         =======================================================================
         */
 
-        // Ustawienia specyficzne dla gry Memory
+        // Settings specific to Memory Game
         const MemoryGameSettings = {
-            CARD_EMOJIS: ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼'], // 8 par = 16 kart
-            FLIP_DELAY: 1000 // 1 sekunda na zapamiętanie [41]
+            CARD_EMOJIS: ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼'], // 8 pairs = 16 cards
+            FLIP_DELAY: 1000 // 1 second to memorize
         };
 
-        // Stan specyficzny dla gry Memory
+        // State specific to Memory Game
         const MemoryState = {
-            cards: [], // Tablica elementów DOM kart
-            flippedCards: [], // Maksymalnie 2 karty
+            cards: [], // Array of card DOM elements
+            flippedCards: [], // Max 2 cards
             matchedPairs: 0,
             totalMoves: 0,
-            lockBoard: false // Blokada planszy podczas animacji 
+            lockBoard: false // Lock board during animation
         };
 
         /**
-         * Rozpoczyna grę w trybie Memory.
+         * Starts the Memory game.
          */
         function startMemoryGame() {
             const D = AppState.DOM;
@@ -2434,74 +2406,74 @@
             
             C.gameMode = 'memoryGame';
             
-            // Przygotowanie kontenera gry
+            // Prepare game container
             D.gameContainer.innerHTML = `
                 <div class="game-start-screen" id="start-screen-memoryGame">
-                     <h2 class="game-title">Gra Pamięciowa</h2>
+                     <h2 class="game-title">Memory Game</h2>
                      <p class="game-description" style="margin-bottom: 1rem;">
-                        Ruchy: <span id="memory-moves" style="font-size: 1.2rem; font-weight: bold; color: var(--accent-color);">0</span>
+                         Moves: <span id="memory-moves" style="font-size: 1.2rem; font-weight: bold; color: var(--accent-color);">0</span>
                      </p>
                      <div class="memory-game-grid" id="memory-grid"></div>
                      <button class="btn btn-primary" id="memory-restart-btn" style="margin-top: 1.5rem;">Restart</button>
                 </div>
             `;
             
-            // Zapisz referencje
+            // Save references
             const grid = document.getElementById('memory-grid');
             const movesDisplay = document.getElementById('memory-moves');
             const restartBtn = document.getElementById('memory-restart-btn');
             
-            // Reset stanu
+            // Reset state
             C.isActive = true;
             MemoryState.flippedCards = [];
             MemoryState.matchedPairs = 0;
             MemoryState.totalMoves = 0;
             MemoryState.lockBoard = false;
-            C.hits = 0; // 'hits' to będą ruchy
+            C.hits = 0; // 'hits' will be moves
             movesDisplay.textContent = '0';
             
-            // Wygeneruj i potasuj karty
+            // Generate and shuffle cards
             const cardSet = [...MemoryGameSettings.CARD_EMOJIS, ...MemoryGameSettings.CARD_EMOJIS];
-            shuffleArray(cardSet); // [20]
+            shuffleArray(cardSet);
             
-            // Stwórz karty w DOM
-            grid.innerHTML = ''; // Wyczyść na wypadek restartu
+            // Create cards in the DOM
+            grid.innerHTML = ''; // Clear in case of restart
             MemoryState.cards = cardSet.map(emoji => createMemoryCard(emoji));
             MemoryState.cards.forEach(card => grid.appendChild(card));
             
-            // Dodaj listener do przycisku restartu
+            // Add listener to restart button
             restartBtn.addEventListener('click', () => showGameScreen('memoryGame'));
         }
 
         /**
-         * Tworzy pojedynczą kartę do gry Memory.
-         * @param {string} emoji - Emoji, które będzie na karcie.
-         * @returns {HTMLElement} - Element DOM karty.
+         * Creates a single card for the Memory game.
+         * @param {string} emoji - The emoji to be on the card.
+         * @returns {HTMLElement} - The card's DOM element.
          */
         function createMemoryCard(emoji) {
             const card = document.createElement('div');
             card.className = 'memory-card';
-            card.dataset.emoji = emoji; // Zapisujemy emoji w atrybucie data
+            card.dataset.emoji = emoji; // Save the emoji in a data attribute
             
             card.innerHTML = `
                 <div class="front-face">${emoji}</div>
                 <div class="back-face">?</div>
             `;
             
-            // Dodaj listener do odwracania
+            // Add listener for flipping
             card.addEventListener('click', () => handleMemoryCardFlip(card));
             return card;
         }
 
         /**
-         * Obsługuje kliknięcie (odwrócenie) karty.
-         * @param {HTMLElement} card - Kliknięta karta.
+         * Handles clicking (flipping) a card.
+         * @param {HTMLElement} card - The clicked card.
          */
         function handleMemoryCardFlip(card) {
             const M = MemoryState;
             const C = AppState.currentGame;
             
-            // Nie rób nic, jeśli plansza jest zablokowana, karta jest już odwrócona, lub już mamy 2 karty
+            // Do nothing if the board is locked, the card is already flipped, or we already have 2 cards
             if (M.lockBoard || card.classList.contains('flip') || M.flippedCards.length === 2 || card === M.flippedCards[0]) {
                 return;
             }
@@ -2509,24 +2481,24 @@
             card.classList.add('flip');
             M.flippedCards.push(card);
             
-            // Jeśli to pierwsza karta, po prostu czekaj
+            // If it's the first card, just wait
             if (M.flippedCards.length === 1) {
                 return;
             }
             
-            // Jeśli to druga karta, zlicz ruch i sprawdź dopasowanie
+            // If it's the second card, count the move and check for a match
             M.totalMoves++;
             C.hits = M.totalMoves;
             document.getElementById('memory-moves').textContent = M.totalMoves;
             
-            // Zablokuj planszę na czas sprawdzania 
+            // Lock the board while checking
             M.lockBoard = true;
             
             checkForMemoryMatch();
         }
 
         /**
-         * Sprawdza, czy dwie odwrócone karty pasują do siebie.
+         * Checks if the two flipped cards match.
          */
         function checkForMemoryMatch() {
             const M = MemoryState;
@@ -2535,16 +2507,16 @@
             const isMatch = cardOne.dataset.emoji === cardTwo.dataset.emoji;
             
             if (isMatch) {
-                // Trafienie
+                // Match
                 disableMatchedCards();
             } else {
-                // Pudło
+                // No match
                 unflipMismatchedCards();
             }
         }
 
         /**
-         * Blokuje dopasowane karty (pozostają odwrócone).
+         * Disables matched cards (they stay flipped).
          */
         function disableMatchedCards() {
             const M = MemoryState;
@@ -2554,14 +2526,14 @@
             M.matchedPairs++;
             resetMemoryBoard();
             
-            // Sprawdź warunek zwycięstwa
+            // Check for win condition
             if (M.matchedPairs === MemoryGameSettings.CARD_EMOJIS.length) {
-                setTimeout(stopMemoryGame, 500); // Małe opóźnienie na animację
+                setTimeout(stopMemoryGame, 500); // Short delay for animation
             }
         }
 
         /**
-         * Odwraca z powrotem niedopasowane karty po krótkim opóźnieniu.[41]
+         * Flips mismatched cards back over after a short delay.
          */
         function unflipMismatchedCards() {
             const M = MemoryState;
@@ -2573,7 +2545,7 @@
         }
 
         /**
-         * Resetuje stan planszy po ruchu (zeruje tablicę odwróconych kart).
+         * Resets the board state after a move (clears the flipped cards array).
          */
         function resetMemoryBoard() {
             MemoryState.flippedCards = [];
@@ -2581,7 +2553,7 @@
         }
 
         /**
-         * Kończy grę w trybie Memory.
+         * Ends the Memory game.
          */
         function stopMemoryGame() {
             const C = AppState.currentGame;
@@ -2590,15 +2562,15 @@
             C.isActive = false;
             C.endTime = Date.now();
             
-            console.log(`Gra Pamięciowa zakończona w ${MemoryState.totalMoves} ruchach.`);
+            console.log(`Memory Game finished in ${MemoryState.totalMoves} moves.`);
             
-            // Pokaż finałowe statystyki
+            // Show final stats
             showFinalStats('memoryGame');
         }
 
         /**
-         * Funkcja pomocnicza do tasowania tablicy (Fisher-Yates shuffle).
-         * @param {Array} array - Tablica do potasowania.
+         * Helper function to shuffle an array (Fisher-Yates shuffle).
+         * @param {Array} array - The array to shuffle.
          */
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -2610,31 +2582,29 @@
 
         /*
         =======================================================================
-         9. Moduł 9: Tryb Gry - Whac-a-Mole
-            - Implementacja na podstawie tutoriali.[28, 29, 43]
-            - Logika losowego pojawiania się i znikania ("peep").
+         9. Module 9: Game Mode - Whac-a-Mole
         =======================================================================
         */
 
-        // Ustawienia specyficzne dla gry Whac-a-Mole
+        // Settings specific to Whac-a-Mole
         const WhacSettings = {
-            GAME_DURATION: 30000, // 30 sekund
-            MIN_PEEP_TIME: 300,  // ms 
-            MAX_PEEP_TIME: 1000, // ms 
+            GAME_DURATION: 30000, // 30 seconds
+            MIN_PEEP_TIME: 300,   // ms 
+            MAX_PEEP_TIME: 1000,  // ms 
             HOLE_COUNT: 9
         };
 
-        // Stan specyficzny dla gry Whac-a-Mole
+        // State specific to Whac-a-Mole
         const WhacState = {
-            holes: [], // Tablica elementów DOM
-            lastHole: null, // Zapobiega pojawieniu się w tym samym miejscu [29]
+            holes: [], // Array of DOM elements
+            lastHole: null, // Prevents appearing in the same spot
             peepTimeout: null,
             score: 0,
             scoreDisplay: null
         };
 
         /**
-         * Rozpoczyna grę w trybie Whac-a-Mole.
+         * Starts the Whac-a-Mole game.
          */
         function startWhacGame() {
             const D = AppState.DOM;
@@ -2642,29 +2612,29 @@
             
             C.gameMode = 'whacAMole';
             
-            // Przygotowanie interfejsu
+            // Prepare UI
             D.gameContainer.innerHTML = `
                 <div class="game-start-screen" id="start-screen-whacAMole">
                      <h2 class="game-title">Whac-a-Mole</h2>
                      <div class="whac-stats-live" style="margin-bottom: 1rem;">
-                        Wynik: <span id="whac-score" style="font-size: 1.5rem; font-weight: bold; color: var(--accent-color);">0</span>
+                         Score: <span id="whac-score" style="font-size: 1.5rem; font-weight: bold; color: var(--accent-color);">0</span>
                      </div>
                      <div class="whac-game-grid" id="whac-grid"></div>
                 </div>
             `;
             
-            // Zapisz referencje
+            // Save references
             const grid = document.getElementById('whac-grid');
             WhacState.scoreDisplay = document.getElementById('whac-score');
             
-            // Reset stanu
+            // Reset state
             C.isActive = true;
             WhacState.score = 0;
             WhacState.lastHole = null;
             clearTimeout(WhacState.peepTimeout);
             WhacState.scoreDisplay.textContent = '0';
             
-            // Stwórz dziury
+            // Create holes
             grid.innerHTML = '';
             WhacState.holes = [];
             for (let i = 0; i < WhacSettings.HOLE_COUNT; i++) {
@@ -2673,26 +2643,26 @@
                 
                 const mole = document.createElement('div');
                 mole.className = 'whac-mole';
-                mole.addEventListener('click', handleMoleBonk); // Dodaj listener do kreta
+                mole.addEventListener('click', handleMoleBonk); // Add listener to the mole
                 
                 hole.appendChild(mole);
                 grid.appendChild(hole);
                 WhacState.holes.push(hole);
             }
             
-            // Rozpocznij grę
+            // Start game
             C.startTime = Date.now();
             C.timerInterval = setInterval(updateGameTimer, 100);
             
-            // Ustaw timer końca gry
+            // Set game end timer
             setTimeout(stopWhacGame, WhacSettings.GAME_DURATION);
             
-            // Rozpocznij pojawianie się kretów [29]
+            // Start moles peeping
             peepMole();
         }
 
         /**
-         * Kończy grę Whac-a-Mole.
+         * Ends the Whac-a-Mole game.
          */
         function stopWhacGame() {
             const C = AppState.currentGame;
@@ -2701,32 +2671,32 @@
             C.isActive = false;
             C.endTime = Date.now();
             clearInterval(C.timerInterval);
-            clearTimeout(WhacState.peepTimeout); // Zatrzymaj pojawianie się kretów
+            clearTimeout(WhacState.peepTimeout); // Stop moles from peeping
             
-            // Pokaż finałowe statystyki
-            C.hits = WhacState.score; // Zapisz wynik
+            // Show final stats
+            C.hits = WhacState.score; // Save score
             showFinalStats('whacAMole');
         }
 
         /**
-         * Funkcja losowego pojawiania się kreta.
+         * Random mole peep function.
          */
         function peepMole() {
             const C = AppState.currentGame;
             if (!C.isActive) return;
             
-            // Losowy czas, przez który kret będzie widoczny
+            // Random time for the mole to be visible
             const time = randomTime(WhacSettings.MIN_PEEP_TIME, WhacSettings.MAX_PEEP_TIME);
-            // Losowa dziura
+            // Random hole
             const hole = randomHole(WhacState.holes);
             
-            // Pokaż kreta
+            // Show mole
             hole.classList.add('up');
             
-            // Ustaw timer na schowanie kreta
+            // Set timer to hide the mole
             WhacState.peepTimeout = setTimeout(() => {
                 hole.classList.remove('up');
-                // Wywołaj następnego kreta, jeśli gra wciąż trwa
+                // Call the next mole if the game is still active
                 if (C.isActive) {
                     peepMole();
                 }
@@ -2734,21 +2704,21 @@
         }
 
         /**
-         * Zwraca losowy czas z podanego przedziału.
+         * Returns a random time from the given interval.
          */
         function randomTime(min, max) {
             return Math.round(Math.random() * (max - min) + min);
         }
 
         /**
-         * Zwraca losową dziurę, inną niż poprzednia.[29]
+         * Returns a random hole, different from the previous one.
          */
         function randomHole(holes) {
             const idx = Math.floor(Math.random() * holes.length);
             const hole = holes[idx];
             
             if (hole === WhacState.lastHole) {
-                // Jeśli to ta sama dziura, spróbuj jeszcze raz
+                // If it's the same hole, try again
                 return randomHole(holes);
             }
             
@@ -2757,25 +2727,25 @@
         }
 
         /**
-         * Obsługuje trafienie kreta.
-         * @param {Event} e - Zdarzenie 'click'.
+         * Handles hitting a mole.
+         * @param {Event} e - The 'click' event.
          */
         function handleMoleBonk(e) {
             if (!AppState.currentGame.isActive) return;
             
-            // Sprawdź, czy kret był rzeczywiście 'up' (zapobieganie oszustwom)
+            // Check if the mole was actually 'up' (prevents cheating)
             const hole = e.target.parentElement;
             if (!hole.classList.contains('up')) {
-                return; // Nie trafiono we właściwym momencie
+                return; // Didn't hit at the right time
             }
             
             WhacState.score++;
             WhacState.scoreDisplay.textContent = WhacState.score;
             
-            // Natychmiast schowaj trafionego kreta
+            // Immediately hide the hit mole
             hole.classList.remove('up');
             
-            // Zaktualizuj statystyki na żywo (jeśli chcemy)
+            // Update live stats (if desired)
             AppState.currentGame.hits = WhacState.score;
             updateLiveStats();
         }
@@ -2783,34 +2753,31 @@
 
         /*
         =======================================================================
-         10. Moduł 10: Logika Ogólna (Start/Stop, Timery, Statystyki)
+         10. Module 10: General Logic (Start/Stop, Timers, Stats)
         =======================================================================
         */
 
         /**
-         * Centralny handler dla przycisków "Start Game".
-         * @param {Event} e - Zdarzenie 'click'.
+         * Central handler for "Start Game" buttons.
+         * @param {Event} e - The 'click' event.
          */
         function handleGameStartClick(e) {
             const gameMode = e.target.dataset.startGame;
             
             // ***************************************************************
-            // KRYTYCZNA IMPLEMENTACJA MONETYZACJI (REKLAMA POWIADOMIENIE)
-            // Zamiast pokazywać reklamę przy ładowaniu strony (co jest 
-            // naruszeniem polityki ), pokazujemy ją po intencji 
-            // użytkownika (kliknięcie "Start"), co jest ZGODNE.
+            // CRITICAL MONETIZATION IMPLEMENTATION (AD NOTIFICATION)
             // ***************************************************************
             
-            // Pokaż modal reklamowy
+            // Show ad modal
             openModal('ad-notification-modal');
             
-            // Uruchom grę Z OPÓŹNIENIEM, aby dać czas na wyświetlenie reklamy
-            // (Można też uruchomić grę po zamknięciu modala przez użytkownika)
+            // Start the game WITH A DELAY, to give time for the ad to display
+            // (Alternatively, start the game after the user closes the modal)
             
-            // W tym przypadku uruchamiamy grę natychmiast po zamknięciu modala
+            // In this case, we start the game immediately after the modal is closed
             const adModal = AppState.DOM.adNotificationModal;
             
-            // Funkcja do uruchomienia gry
+            // Function to run the game
             const runGame = () => {
                 switch (gameMode) {
                     case 'aimTrainer':
@@ -2822,18 +2789,18 @@
                     case 'whacAMole':
                         startWhacGame();
                         break;
-                    // Inne gry (typing, memory) startują inaczej
+                    // Other games (typing, memory) start differently
                 }
-                // Usuń listener, aby nie wywołać wielokrotnie
+                // Remove the listener to avoid firing multiple times
                 adModal.removeEventListener('close', runGame);
             };
             
-            // Dodaj listener, który uruchomi grę po zamknięciu modala
+            // Add a listener that runs the game after the modal is closed
             adModal.addEventListener('close', runGame);
         }
 
         /**
-         * Zatrzymuje dowolną aktywnie działającą grę.
+         * Stops any actively running game.
          */
         function stopCurrentGame() {
             const C = AppState.currentGame;
@@ -2850,8 +2817,8 @@
                     stopTypingTest();
                     break;
                 case 'memoryGame':
-                    // Gra w pamięć nie ma timera, ale kończy się
-                    // stopMemoryGame(); // Jest wywoływana wewnętrznie
+                    // Memory game has no timer, but it does end
+                    // stopMemoryGame(); // Is called internally
                     break;
                 case 'whacAMole':
                     stopWhacGame();
@@ -2864,7 +2831,7 @@
         }
 
         /**
-         * Aktualizuje timer gry w panelu bocznym.
+         * Updates the game timer in the sidebar.
          */
         function updateGameTimer() {
             const C = AppState.currentGame;
@@ -2876,7 +2843,7 @@
         }
 
         /**
-         * Aktualizuje statystyki na żywo w panelu bocznym.
+         * Updates the live stats in the sidebar.
          */
         function updateLiveStats() {
             const C = AppState.currentGame;
@@ -2886,7 +2853,7 @@
             const totalActions = C.hits + C.misses;
             
             if (C.gameMode === 'tracking') {
-                // W trybie Tracking, 'hits' to czas na celu, a 'misses' to czas poza
+                // For Tracking, 'hits' is time on target, 'misses' is time off
                 D.hits.textContent = (C.hits / 1000).toFixed(1) + 's';
                 D.misses.textContent = (C.misses / 1000).toFixed(1) + 's';
                 if (totalActions > 0) {
@@ -2895,12 +2862,12 @@
                 D.accuracy.textContent = `${accuracy.toFixed(1)}%`;
                 
             } else if (C.gameMode === 'whacAMole') {
-                D.hits.textContent = C.hits; // 'hits' to wynik
+                D.hits.textContent = C.hits; // 'hits' is score
                 D.misses.textContent = 'N/A';
                 D.accuracy.textContent = 'N/A';
                 
             } else if (C.gameMode === 'aimTrainer') {
-                // Dla Aim Trainer
+                // For Aim Trainer
                 D.hits.textContent = C.hits;
                 D.misses.textContent = C.misses;
                 if (totalActions > 0) {
@@ -2909,7 +2876,7 @@
                 D.accuracy.textContent = `${accuracy.toFixed(1)}%`;
                 
             } else {
-                // Domyślne zachowanie (np. dla przyszłych gier)
+                // Default behavior (for future games)
                 D.hits.textContent = C.hits;
                 D.misses.textContent = C.misses;
                 D.accuracy.textContent = 'N/A';
@@ -2917,7 +2884,7 @@
         }
 
         /**
-         * Resetuje statystyki na żywo w panelu bocznym.
+         * Resets the live stats in the sidebar.
          */
         function resetLiveStats() {
             const D = AppState.DOM.liveStats;
@@ -2928,35 +2895,35 @@
         }
 
         /**
-         * Oblicza i wyświetla końcowe statystyki w oknie modalnym.
-         * @param {string} gameMode - ID zakończonej gry.
+         * Calculates and displays the final stats in the modal.
+         * @param {string} gameMode - ID of the completed game.
          */
         function showFinalStats(gameMode) {
             const C = AppState.currentGame;
             const D = AppState.DOM;
             
-            let title = 'Gra Zakończona!';
+            let title = 'Game Over!';
             let bodyHtml = '';
             let newHighScore = false;
             let scoreData = {};
             
-            // Przygotuj statystyki dla każdej gry
+            // Prepare stats for each game
             switch (gameMode) {
                 case 'aimTrainer':
                     const avgReaction = calculateAverageReactionTime();
                     const finalCps = calculateFinalCPS();
                     const accuracy = (C.hits + C.misses > 0) ? ((C.hits / (C.hits + C.misses)) * 100).toFixed(1) : 0;
                     
-                    title = 'Trener Celności: Wyniki';
+                    title = 'Aim Trainer: Results';
                     bodyHtml = `
-                        <p>Średni czas reakcji: <strong>${avgReaction} ms</strong></p>
-                        <p>Trafienia: <strong>${C.hits}</strong></p>
-                        <p>Pudła: <strong>${C.misses}</strong></p>
-                        <p>Celność: <strong>${accuracy}%</strong></p>
-                        <p>Średnie CPS: <strong>${finalCps}</strong></p>
+                        <p>Average reaction time: <strong>${avgReaction} ms</strong></p>
+                        <p>Hits: <strong>${C.hits}</strong></p>
+                        <p>Misses: <strong>${C.misses}</strong></p>
+                        <p>Accuracy: <strong>${accuracy}%</strong></p>
+                        <p>Average CPS: <strong>${finalCps}</strong></p>
                     `;
                     
-                    // Sprawdź najlepszy wynik [32, 33]
+                    // Check for high score
                     scoreData = { score: C.hits, reaction: avgReaction };
                     if (!AppState.highScores.aimTrainer || C.hits > AppState.highScores.aimTrainer.score) {
                         newHighScore = true;
@@ -2968,11 +2935,11 @@
                     const totalTime = C.hits + C.misses;
                     const trackingAccuracy = (totalTime > 0) ? ((C.hits / totalTime) * 100) : 0;
                     
-                    title = 'Trening Śledzenia: Wyniki';
+                    title = 'Tracking: Results';
                     bodyHtml = `
-                        <p>Czas na celu: <strong>${(C.hits / 1000).toFixed(2)} s</strong></p>
-                        <p>Czas poza celem: <strong>${(C.misses / 1000).toFixed(2)} s</strong></p>
-                        <p>Celność Śledzenia: <strong>${trackingAccuracy.toFixed(2)}%</strong></p>
+                        <p>Time on target: <strong>${(C.hits / 1000).toFixed(2)} s</strong></p>
+                        <p>Time off target: <strong>${(C.misses / 1000).toFixed(2)} s</strong></p>
+                        <p>Tracking Accuracy: <strong>${trackingAccuracy.toFixed(2)}%</strong></p>
                     `;
                     
                     scoreData = { score: trackingAccuracy };
@@ -2983,15 +2950,15 @@
                     break;
                     
                 case 'typingTest':
-                    const wpm = C.hits; // Przechowywaliśmy WPM w C.hits
+                    const wpm = C.hits; // We stored WPM in C.hits
                     const errors = C.misses;
                     const typingAccuracy = C.accuracy || 100;
                     
-                    title = 'Test Pisania: Wyniki';
+                    title = 'Typing Test: Results';
                     bodyHtml = `
-                        <p>Słowa na Minutę (WPM): <strong>${wpm}</strong></p>
-                        <p>Liczba błędów: <strong>${errors}</strong></p>
-                        <p>Celność: <strong>${typingAccuracy}%</strong></p>
+                        <p>Words Per Minute (WPM): <strong>${wpm}</strong></p>
+                        <p>Error count: <strong>${errors}</strong></p>
+                        <p>Accuracy: <strong>${typingAccuracy}%</strong></p>
                     `;
                     
                     scoreData = { wpm: wpm, accuracy: typingAccuracy };
@@ -3002,11 +2969,11 @@
                     break;
                     
                 case 'memoryGame':
-                    const moves = C.hits; // Przechowywaliśmy ruchy w C.hits
-                    title = 'Gra Pamięciowa: Wyniki';
+                    const moves = C.hits; // We stored moves in C.hits
+                    title = 'Memory Game: Results';
                     bodyHtml = `
-                        <p>Gra ukończona!</p>
-                        <p>Liczba ruchów: <strong>${moves}</strong></p>
+                        <p>Game complete!</p>
+                        <p>Total moves: <strong>${moves}</strong></p>
                     `;
                     
                     scoreData = { moves: moves };
@@ -3017,11 +2984,11 @@
                     break;
                     
                 case 'whacAMole':
-                    const score = C.hits; // Przechowywaliśmy wynik w C.hits
-                    title = 'Whac-a-Mole: Wyniki';
+                    const score = C.hits; // We stored the score in C.hits
+                    title = 'Whac-a-Mole: Results';
                     bodyHtml = `
-                        <p>Gra Zakończona!</p>
-                        <p>Ostateczny wynik: <strong>${score}</strong></p>
+                        <p>Game Over!</p>
+                        <p>Final score: <strong>${score}</strong></p>
                     `;
                     
                     scoreData = { score: score };
@@ -3032,7 +2999,7 @@
                     break;
             }
             
-            // Wypełnij i pokaż modal
+            // Fill and show the modal
             D.statsModalTitle.textContent = title;
             D.statsModalBody.innerHTML = bodyHtml;
             D.statsModalNewHighScore.hidden = !newHighScore;
@@ -3042,39 +3009,39 @@
 
         /*
         =======================================================================
-         11. Moduł 11: Inicjalizacja Aplikacji (Główna Pętla)
+         11. Module 11: Application Initialization (Main Loop)
         =======================================================================
         */
 
         /**
-         * Główna funkcja inicjalizująca aplikację.
-         * Wywoływana po załadowaniu drzewa DOM.
+         * Main function to initialize the application.
+         * Called after the DOM tree is loaded.
          */
         function initializeApp() {
-            console.log("Inicjalizacja ReflexCore v1.0...");
+            console.log("Initializing ReflexCore v1.0...");
             
-            // 1. Zmapuj wszystkie elementy DOM
+            // 1. Map all DOM elements
             initializeDOMSelectors();
             
-            // 2. Wczytaj ustawienia (motyw, język) z localStorage
+            // 2. Load settings (theme, language) from localStorage
             loadSettings();
             
-            // 3. Wczytaj najlepsze wyniki
+            // 3. Load high scores
             loadHighScores();
             
-            // 4. Uruchom listenery dla panelu ustawień
+            // 4. Start listeners for the settings panel
             initializeSettingsPanel();
             
-            // 5. Uruchom listenery dla nawigacji
+            // 5. Start listeners for navigation
             initializeNavigation();
             
-            // 6. Uruchom listenery dla okien modalnych
+            // 6. Start listeners for modal windows
             initializeModals();
             
-            console.log("Aplikacja gotowa.");
+            console.log("Application ready.");
         }
 
-        // Uruchom aplikację po pełnym załadowaniu struktury HTML
+        // Run the application after the HTML structure is fully loaded
         document.addEventListener('DOMContentLoaded', initializeApp);
     </script>
 
